@@ -1,7 +1,7 @@
 """Transaction-Level Price Model page.
 
 Real RandomForestRegressor trained on all 982,011 individual HDB resale
-transactions (pipeline/train_transaction_model.py), not the 26-town summary
+transactions (pipeline/train_transaction_model.py), not the 23-town summary
 used elsewhere in this dashboard. Also displays the honest Intel(R)
 Extension for Scikit-learn benchmark log (processed_data/
 intel_benchmark.json) -- shows whatever has actually been measured, nothing
@@ -139,27 +139,14 @@ def _render_verdict(wdf, config_col, workload):
 
 
 def show():
-    st.title("Transaction-Level Price Model")
+    st.title("Intel Benchmark (v1 random forest)")
     st.markdown(
-        "Unlike the Access & Affordability Map page (26-town summary), this model trains "
-        "directly on all **982,011 individual HDB resale transactions** "
-        "(`processed_data/hdb-all-cleaned.csv`) -- large enough for the "
-        "Intel(R) Extension for Scikit-learn oneDAL backend to plausibly "
-        "matter, and a legitimate analysis in its own right: what predicts "
-        "an *individual transaction's* price, not just a town average."
+        "Benchmarks of Intel(R) Extension for Scikit-learn (oneDAL) and ONNX Runtime / OpenVINO "
+        "on the **v1** transaction-level random forest, trained on all 982,011 resale "
+        "transactions. The served price model is now the v2 gradient-boosting model: see "
+        "**Price Predictor**, **Explainability** and **Model Validation**. This page keeps the "
+        "v1 hardware results, which stand on their own."
     )
-
-    bundle = load_model()
-    if bundle is None:
-        st.warning(
-            "No trained model found. Run `python pipeline/train_transaction_model.py` "
-            "from the project root to train it (takes several minutes on the "
-            "full dataset)."
-        )
-        return
-
-    model = bundle["model"]
-    feature_columns = bundle["feature_columns"]
 
     # ── Honest Intel benchmark log ──
     st.header("Intel(R) Extension for Scikit-learn Benchmark")
@@ -213,14 +200,14 @@ def show():
             if workload == "kmeans_fit":
                 st.caption(
                     "Scope: this is **not** the town clustering on the Access & "
-                    "Affordability Heatmap page. That runs on 26 towns x 5 "
+                    "Affordability Heatmap page. That runs on ~23 towns x 6 "
                     "factors and "
                     "finishes in microseconds -- no backend changes it. This "
                     "benchmarks the same algorithm on a seeded random sample "
                     "of the real transaction data, scaled until the backend "
                     "is measurable. It does not make this dashboard faster."
                 )
-            st.dataframe(wdf[cols], use_container_width=True, hide_index=True)
+            st.dataframe(wdf[cols], width="stretch", hide_index=True)
             _render_verdict(wdf, config_col, workload)
 
     # ── Inference benchmark ──
@@ -261,7 +248,7 @@ def show():
                 "speedup": e.get("speedup"),
                 "agreement_mae": e.get("agreement_mae"),
             })
-        st.dataframe(pd.DataFrame(rows), use_container_width=True, hide_index=True)
+        st.dataframe(pd.DataFrame(rows), width="stretch", hide_index=True)
 
         ort = backends.get("onnxruntime", {})
         if ort.get("speedup"):
@@ -292,44 +279,6 @@ def show():
         elif ov.get("status") == "not_installed":
             st.caption("OpenVINO not installed in this environment.")
 
-    # ── Feature importances ──
-    st.header("What Predicts an Individual Transaction's Price?")
-    importances = pd.DataFrame({
-        "feature": feature_columns,
-        "importance": model.feature_importances_,
-    }).sort_values("importance", ascending=False).head(15)
-    fig = px.bar(
-        importances, x="importance", y="feature", orientation="h",
-        title="Top 15 features by RandomForest importance (real, from the fitted model)",
-        height=450,
-    )
-    fig.update_layout(yaxis={"categoryorder": "total ascending"})
-    st.plotly_chart(fig, use_container_width=True)
-
-    # ── Live prediction tool ──
-    st.header("Predict a Transaction's Price")
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        town = st.selectbox("Town", sorted(TOWN_COORDS.keys()))
-        flat_type = st.selectbox("Flat Type", FLAT_TYPES, index=3)
-    with col2:
-        floor_area = st.slider("Floor Area (sqm)", 30, 200, 90)
-        storey_mid = st.slider("Storey (midpoint)", 2, 45, 8)
-    with col3:
-        remaining_lease = st.slider("Remaining Lease (years)", 40, 99, 80)
-        year = st.slider("Transaction Year", 2012, 2026, 2026)
-
-    row = pd.DataFrame([{c: 0 for c in feature_columns}])
-    row["floor_area_sqm"] = floor_area
-    row["storey_mid"] = storey_mid
-    row["remaining_lease"] = remaining_lease
-    row["year"] = year
-    town_col = f"town_{town}"
-    flat_col = f"flat_type_{flat_type}"
-    if town_col in row.columns:
-        row[town_col] = 1
-    if flat_col in row.columns:
-        row[flat_col] = 1
-
-    predicted = model.predict(row[feature_columns])[0]
-    st.metric("Predicted Resale Price", f"${predicted:,.0f}")
+    st.info("The v1 feature-importance chart and predictor that used to sit here have been "
+            "replaced: the v2 model's explanations (exact Shapley against the served model) are "
+            "on the Explainability page, and predictions with 80% intervals on Price Predictor.")

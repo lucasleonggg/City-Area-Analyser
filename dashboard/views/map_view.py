@@ -47,7 +47,7 @@ def show():
         return
 
     # Map
-    fig = px.scatter_mapbox(
+    fig = px.scatter_map(
         year_data,
         lat="lat",
         lon="lng",
@@ -67,7 +67,7 @@ def show():
             year_data["median_resale_price"].quantile(0.95),
         ],
         title=f"{selected_flat_type} Resale Prices ({selected_year})",
-        mapbox_style="open-street-map",
+        map_style="open-street-map",
         center={"lat": 1.3521, "lon": 103.8198},
         zoom=10.5,
         height=600,
@@ -84,7 +84,7 @@ def show():
             subset = rail_df[rail_df["mode"] == mode]
             if subset.empty:
                 continue
-            fig.add_scattermapbox(
+            fig.add_scattermap(
                 lat=subset["lat"],
                 lon=subset["lng"],
                 mode="markers",
@@ -97,7 +97,7 @@ def show():
     # Add hospitals
     if show_hospitals:
         hosp_df = get_hospitals_df()
-        fig.add_scattermapbox(
+        fig.add_scattermap(
             lat=hosp_df["lat"],
             lon=hosp_df["lng"],
             mode="markers",
@@ -108,18 +108,18 @@ def show():
         )
 
     fig.update_layout(legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01))
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # Top 5 most expensive towns
     st.subheader(f"Top 5 Most Expensive Towns ({selected_year}, {selected_flat_type})")
     top5 = year_data.nlargest(5, "median_resale_price")[
         ["town", "median_resale_price", "transaction_count"]
     ]
-    st.dataframe(top5, use_container_width=True, hide_index=True)
+    st.dataframe(top5, width="stretch", hide_index=True)
 
     # Bottom 5 cheapest towns
     st.subheader(f"Top 5 Most Affordable Towns ({selected_year}, {selected_flat_type})")
     bottom5 = year_data.nsmallest(5, "median_resale_price")[
         ["town", "median_resale_price", "transaction_count"]
     ]
-    st.dataframe(bottom5, use_container_width=True, hide_index=True)
+    st.dataframe(bottom5, width="stretch", hide_index=True)

@@ -1,0 +1,801 @@
+year,spec,I,n_towns
+1995,kNN k=3 | binary,0.4786,23
+1995,kNN k=3 | row-standardised,0.4786,23
+1995,kNN k=4 | binary,0.4487,23
+1995,kNN k=4 | row-standardised,0.4487,23
+1995,kNN k=5 | binary,0.4499,23
+1995,kNN k=5 | row-standardised,0.4499,23
+1995,kNN k=6 | binary,0.3636,23
+1995,kNN k=6 | row-standardised,0.3636,23
+1995,kNN k=7 | binary,0.3345,23
+1995,kNN k=7 | row-standardised,0.3345,23
+1995,kNN k=8 | binary,0.3299,23
+1995,kNN k=8 | row-standardised,0.3299,23
+1995,kNN k=9 | binary,0.3206,23
+1995,kNN k=9 | row-standardised,0.3206,23
+1995,kNN k=10 | binary,0.2683,23
+1995,kNN k=10 | row-standardised,0.2683,23
+1995,Distance band 4 km | binary,0.4891,23
+1995,Distance band 4 km | row-standardised,0.4942,23
+1995,Distance band 6 km | binary,0.4438,23
+1995,Distance band 6 km | row-standardised,0.529,23
+1995,Distance band 8 km | binary,0.3796,23
+1995,Distance band 8 km | row-standardised,0.4562,23
+1995,Inverse distance | raw,0.1389,23
+1995,Inverse distance | row-standardised,0.1397,23
+1996,kNN k=3 | binary,0.5003,23
+1996,kNN k=3 | row-standardised,0.5003,23
+1996,kNN k=4 | binary,0.444,23
+1996,kNN k=4 | row-standardised,0.444,23
+1996,kNN k=5 | binary,0.4506,23
+1996,kNN k=5 | row-standardised,0.4506,23
+1996,kNN k=6 | binary,0.3634,23
+1996,kNN k=6 | row-standardised,0.3634,23
+1996,kNN k=7 | binary,0.3304,23
+1996,kNN k=7 | row-standardised,0.3304,23
+1996,kNN k=8 | binary,0.3287,23
+1996,kNN k=8 | row-standardised,0.3287,23
+1996,kNN k=9 | binary,0.3186,23
+1996,kNN k=9 | row-standardised,0.3186,23
+1996,kNN k=10 | binary,0.27,23
+1996,kNN k=10 | row-standardised,0.27,23
+1996,Distance band 4 km | binary,0.5047,23
+1996,Distance band 4 km | row-standardised,0.5231,23
+1996,Distance band 6 km | binary,0.4374,23
+1996,Distance band 6 km | row-standardised,0.5396,23
+1996,Distance band 8 km | binary,0.3615,23
+1996,Distance band 8 km | row-standardised,0.454,23
+1996,Inverse distance | raw,0.1429,23
+1996,Inverse distance | row-standardised,0.1472,23
+1997,kNN k=3 | binary,0.5389,23
+1997,kNN k=3 | row-standardised,0.5389,23
+1997,kNN k=4 | binary,0.4665,23
+1997,kNN k=4 | row-standardised,0.4665,23
+1997,kNN k=5 | binary,0.4794,23
+1997,kNN k=5 | row-standardised,0.4794,23
+1997,kNN k=6 | binary,0.3816,23
+1997,kNN k=6 | row-standardised,0.3816,23
+1997,kNN k=7 | binary,0.3416,23
+1997,kNN k=7 | row-standardised,0.3416,23
+1997,kNN k=8 | binary,0.3331,23
+1997,kNN k=8 | row-standardised,0.3331,23
+1997,kNN k=9 | binary,0.3168,23
+1997,kNN k=9 | row-standardised,0.3168,23
+1997,kNN k=10 | binary,0.2687,23
+1997,kNN k=10 | row-standardised,0.2687,23
+1997,Distance band 4 km | binary,0.5651,23
+1997,Distance band 4 km | row-standardised,0.5842,23
+1997,Distance band 6 km | binary,0.4821,23
+1997,Distance band 6 km | row-standardised,0.5851,23
+1997,Distance band 8 km | binary,0.3832,23
+1997,Distance band 8 km | row-standardised,0.4735,23
+1997,Inverse distance | raw,0.1522,23
+1997,Inverse distance | row-standardised,0.155,23
+1998,kNN k=3 | binary,0.5474,23
+1998,kNN k=3 | row-standardised,0.5474,23
+1998,kNN k=4 | binary,0.4816,23
+1998,kNN k=4 | row-standardised,0.4816,23
+1998,kNN k=5 | binary,0.5008,23
+1998,kNN k=5 | row-standardised,0.5008,23
+1998,kNN k=6 | binary,0.3989,23
+1998,kNN k=6 | row-standardised,0.3989,23
+1998,kNN k=7 | binary,0.3612,23
+1998,kNN k=7 | row-standardised,0.3612,23
+1998,kNN k=8 | binary,0.3552,23
+1998,kNN k=8 | row-standardised,0.3552,23
+1998,kNN k=9 | binary,0.3391,23
+1998,kNN k=9 | row-standardised,0.3391,23
+1998,kNN k=10 | binary,0.2866,23
+1998,kNN k=10 | row-standardised,0.2866,23
+1998,Distance band 4 km | binary,0.594,23
+1998,Distance band 4 km | row-standardised,0.6081,23
+1998,Distance band 6 km | binary,0.5057,23
+1998,Distance band 6 km | row-standardised,0.611,23
+1998,Distance band 8 km | binary,0.4119,23
+1998,Distance band 8 km | row-standardised,0.5004,23
+1998,Inverse distance | raw,0.1592,23
+1998,Inverse distance | row-standardised,0.1604,23
+1999,kNN k=3 | binary,0.5553,23
+1999,kNN k=3 | row-standardised,0.5553,23
+1999,kNN k=4 | binary,0.4822,23
+1999,kNN k=4 | row-standardised,0.4822,23
+1999,kNN k=5 | binary,0.502,23
+1999,kNN k=5 | row-standardised,0.502,23
+1999,kNN k=6 | binary,0.4039,23
+1999,kNN k=6 | row-standardised,0.4039,23
+1999,kNN k=7 | binary,0.3674,23
+1999,kNN k=7 | row-standardised,0.3674,23
+1999,kNN k=8 | binary,0.3585,23
+1999,kNN k=8 | row-standardised,0.3585,23
+1999,kNN k=9 | binary,0.3407,23
+1999,kNN k=9 | row-standardised,0.3407,23
+1999,kNN k=10 | binary,0.2833,23
+1999,kNN k=10 | row-standardised,0.2833,23
+1999,Distance band 4 km | binary,0.5803,23
+1999,Distance band 4 km | row-standardised,0.5908,23
+1999,Distance band 6 km | binary,0.5026,23
+1999,Distance band 6 km | row-standardised,0.5999,23
+1999,Distance band 8 km | binary,0.4223,23
+1999,Distance band 8 km | row-standardised,0.5027,23
+1999,Inverse distance | raw,0.1622,23
+1999,Inverse distance | row-standardised,0.1623,23
+2000,kNN k=3 | binary,0.5475,23
+2000,kNN k=3 | row-standardised,0.5475,23
+2000,kNN k=4 | binary,0.4821,23
+2000,kNN k=4 | row-standardised,0.4821,23
+2000,kNN k=5 | binary,0.5003,23
+2000,kNN k=5 | row-standardised,0.5003,23
+2000,kNN k=6 | binary,0.3978,23
+2000,kNN k=6 | row-standardised,0.3978,23
+2000,kNN k=7 | binary,0.3587,23
+2000,kNN k=7 | row-standardised,0.3587,23
+2000,kNN k=8 | binary,0.3496,23
+2000,kNN k=8 | row-standardised,0.3496,23
+2000,kNN k=9 | binary,0.3327,23
+2000,kNN k=9 | row-standardised,0.3327,23
+2000,kNN k=10 | binary,0.275,23
+2000,kNN k=10 | row-standardised,0.275,23
+2000,Distance band 4 km | binary,0.5732,23
+2000,Distance band 4 km | row-standardised,0.6017,23
+2000,Distance band 6 km | binary,0.5013,23
+2000,Distance band 6 km | row-standardised,0.6067,23
+2000,Distance band 8 km | binary,0.4195,23
+2000,Distance band 8 km | row-standardised,0.504,23
+2000,Inverse distance | raw,0.1557,23
+2000,Inverse distance | row-standardised,0.1564,23
+2001,kNN k=3 | binary,0.5467,23
+2001,kNN k=3 | row-standardised,0.5467,23
+2001,kNN k=4 | binary,0.4917,23
+2001,kNN k=4 | row-standardised,0.4917,23
+2001,kNN k=5 | binary,0.4974,23
+2001,kNN k=5 | row-standardised,0.4974,23
+2001,kNN k=6 | binary,0.4018,23
+2001,kNN k=6 | row-standardised,0.4018,23
+2001,kNN k=7 | binary,0.3602,23
+2001,kNN k=7 | row-standardised,0.3602,23
+2001,kNN k=8 | binary,0.3446,23
+2001,kNN k=8 | row-standardised,0.3446,23
+2001,kNN k=9 | binary,0.3249,23
+2001,kNN k=9 | row-standardised,0.3249,23
+2001,kNN k=10 | binary,0.2669,23
+2001,kNN k=10 | row-standardised,0.2669,23
+2001,Distance band 4 km | binary,0.5696,23
+2001,Distance band 4 km | row-standardised,0.5989,23
+2001,Distance band 6 km | binary,0.508,23
+2001,Distance band 6 km | row-standardised,0.6014,23
+2001,Distance band 8 km | binary,0.4225,23
+2001,Distance band 8 km | row-standardised,0.4949,23
+2001,Inverse distance | raw,0.1569,23
+2001,Inverse distance | row-standardised,0.1579,23
+2002,kNN k=3 | binary,0.5886,24
+2002,kNN k=3 | row-standardised,0.5886,24
+2002,kNN k=4 | binary,0.5557,24
+2002,kNN k=4 | row-standardised,0.5557,24
+2002,kNN k=5 | binary,0.5283,24
+2002,kNN k=5 | row-standardised,0.5283,24
+2002,kNN k=6 | binary,0.4524,24
+2002,kNN k=6 | row-standardised,0.4524,24
+2002,kNN k=7 | binary,0.4143,24
+2002,kNN k=7 | row-standardised,0.4143,24
+2002,kNN k=8 | binary,0.3696,24
+2002,kNN k=8 | row-standardised,0.3696,24
+2002,kNN k=9 | binary,0.3527,24
+2002,kNN k=9 | row-standardised,0.3527,24
+2002,kNN k=10 | binary,0.3097,24
+2002,kNN k=10 | row-standardised,0.3097,24
+2002,Distance band 4 km | binary,0.612,24
+2002,Distance band 4 km | row-standardised,0.649,24
+2002,Distance band 6 km | binary,0.5501,24
+2002,Distance band 6 km | row-standardised,0.636,24
+2002,Distance band 8 km | binary,0.464,24
+2002,Distance band 8 km | row-standardised,0.5469,24
+2002,Inverse distance | raw,0.1749,24
+2002,Inverse distance | row-standardised,0.1802,24
+2003,kNN k=3 | binary,0.5846,25
+2003,kNN k=3 | row-standardised,0.5846,25
+2003,kNN k=4 | binary,0.5768,25
+2003,kNN k=4 | row-standardised,0.5768,25
+2003,kNN k=5 | binary,0.5204,25
+2003,kNN k=5 | row-standardised,0.5204,25
+2003,kNN k=6 | binary,0.4666,25
+2003,kNN k=6 | row-standardised,0.4666,25
+2003,kNN k=7 | binary,0.4221,25
+2003,kNN k=7 | row-standardised,0.4221,25
+2003,kNN k=8 | binary,0.3689,25
+2003,kNN k=8 | row-standardised,0.3689,25
+2003,kNN k=9 | binary,0.3492,25
+2003,kNN k=9 | row-standardised,0.3492,25
+2003,kNN k=10 | binary,0.3266,25
+2003,kNN k=10 | row-standardised,0.3266,25
+2003,Distance band 4 km | binary,0.6106,25
+2003,Distance band 4 km | row-standardised,0.6525,25
+2003,Distance band 6 km | binary,0.545,25
+2003,Distance band 6 km | row-standardised,0.6251,25
+2003,Distance band 8 km | binary,0.4483,25
+2003,Distance band 8 km | row-standardised,0.5291,25
+2003,Inverse distance | raw,0.1648,25
+2003,Inverse distance | row-standardised,0.17,25
+2004,kNN k=3 | binary,0.569,25
+2004,kNN k=3 | row-standardised,0.569,25
+2004,kNN k=4 | binary,0.5647,25
+2004,kNN k=4 | row-standardised,0.5647,25
+2004,kNN k=5 | binary,0.5031,25
+2004,kNN k=5 | row-standardised,0.5031,25
+2004,kNN k=6 | binary,0.4517,25
+2004,kNN k=6 | row-standardised,0.4517,25
+2004,kNN k=7 | binary,0.4048,25
+2004,kNN k=7 | row-standardised,0.4048,25
+2004,kNN k=8 | binary,0.3507,25
+2004,kNN k=8 | row-standardised,0.3507,25
+2004,kNN k=9 | binary,0.3319,25
+2004,kNN k=9 | row-standardised,0.3319,25
+2004,kNN k=10 | binary,0.3117,25
+2004,kNN k=10 | row-standardised,0.3117,25
+2004,Distance band 4 km | binary,0.6036,25
+2004,Distance band 4 km | row-standardised,0.6531,25
+2004,Distance band 6 km | binary,0.5341,25
+2004,Distance band 6 km | row-standardised,0.6118,25
+2004,Distance band 8 km | binary,0.4275,25
+2004,Distance band 8 km | row-standardised,0.5054,25
+2004,Inverse distance | raw,0.1578,25
+2004,Inverse distance | row-standardised,0.1631,25
+2005,kNN k=3 | binary,0.558,25
+2005,kNN k=3 | row-standardised,0.558,25
+2005,kNN k=4 | binary,0.5624,25
+2005,kNN k=4 | row-standardised,0.5624,25
+2005,kNN k=5 | binary,0.491,25
+2005,kNN k=5 | row-standardised,0.491,25
+2005,kNN k=6 | binary,0.4451,25
+2005,kNN k=6 | row-standardised,0.4451,25
+2005,kNN k=7 | binary,0.3963,25
+2005,kNN k=7 | row-standardised,0.3963,25
+2005,kNN k=8 | binary,0.3425,25
+2005,kNN k=8 | row-standardised,0.3425,25
+2005,kNN k=9 | binary,0.3245,25
+2005,kNN k=9 | row-standardised,0.3245,25
+2005,kNN k=10 | binary,0.3009,25
+2005,kNN k=10 | row-standardised,0.3009,25
+2005,Distance band 4 km | binary,0.5948,25
+2005,Distance band 4 km | row-standardised,0.6471,25
+2005,Distance band 6 km | binary,0.5288,25
+2005,Distance band 6 km | row-standardised,0.6063,25
+2005,Distance band 8 km | binary,0.4219,25
+2005,Distance band 8 km | row-standardised,0.4941,25
+2005,Inverse distance | raw,0.1551,25
+2005,Inverse distance | row-standardised,0.1598,25
+2006,kNN k=3 | binary,0.5848,26
+2006,kNN k=3 | row-standardised,0.5848,26
+2006,kNN k=4 | binary,0.5769,26
+2006,kNN k=4 | row-standardised,0.5769,26
+2006,kNN k=5 | binary,0.5287,26
+2006,kNN k=5 | row-standardised,0.5287,26
+2006,kNN k=6 | binary,0.4663,26
+2006,kNN k=6 | row-standardised,0.4663,26
+2006,kNN k=7 | binary,0.4182,26
+2006,kNN k=7 | row-standardised,0.4182,26
+2006,kNN k=8 | binary,0.3676,26
+2006,kNN k=8 | row-standardised,0.3676,26
+2006,kNN k=9 | binary,0.3538,26
+2006,kNN k=9 | row-standardised,0.3538,26
+2006,kNN k=10 | binary,0.3256,26
+2006,kNN k=10 | row-standardised,0.3256,26
+2006,Distance band 4 km | binary,0.6209,26
+2006,Distance band 4 km | row-standardised,0.6621,26
+2006,Distance band 6 km | binary,0.5578,26
+2006,Distance band 6 km | row-standardised,0.6339,26
+2006,Distance band 8 km | binary,0.4431,26
+2006,Distance band 8 km | row-standardised,0.5067,26
+2006,Inverse distance | raw,0.1611,26
+2006,Inverse distance | row-standardised,0.1655,26
+2007,kNN k=3 | binary,0.5823,26
+2007,kNN k=3 | row-standardised,0.5823,26
+2007,kNN k=4 | binary,0.5773,26
+2007,kNN k=4 | row-standardised,0.5773,26
+2007,kNN k=5 | binary,0.5363,26
+2007,kNN k=5 | row-standardised,0.5363,26
+2007,kNN k=6 | binary,0.4712,26
+2007,kNN k=6 | row-standardised,0.4712,26
+2007,kNN k=7 | binary,0.4197,26
+2007,kNN k=7 | row-standardised,0.4197,26
+2007,kNN k=8 | binary,0.3709,26
+2007,kNN k=8 | row-standardised,0.3709,26
+2007,kNN k=9 | binary,0.357,26
+2007,kNN k=9 | row-standardised,0.357,26
+2007,kNN k=10 | binary,0.3298,26
+2007,kNN k=10 | row-standardised,0.3298,26
+2007,Distance band 4 km | binary,0.6152,26
+2007,Distance band 4 km | row-standardised,0.6663,26
+2007,Distance band 6 km | binary,0.5623,26
+2007,Distance band 6 km | row-standardised,0.6423,26
+2007,Distance band 8 km | binary,0.4469,26
+2007,Distance band 8 km | row-standardised,0.5135,26
+2007,Inverse distance | raw,0.1602,26
+2007,Inverse distance | row-standardised,0.1652,26
+2008,kNN k=3 | binary,0.5789,26
+2008,kNN k=3 | row-standardised,0.5789,26
+2008,kNN k=4 | binary,0.5727,26
+2008,kNN k=4 | row-standardised,0.5727,26
+2008,kNN k=5 | binary,0.5325,26
+2008,kNN k=5 | row-standardised,0.5325,26
+2008,kNN k=6 | binary,0.4634,26
+2008,kNN k=6 | row-standardised,0.4634,26
+2008,kNN k=7 | binary,0.4112,26
+2008,kNN k=7 | row-standardised,0.4112,26
+2008,kNN k=8 | binary,0.363,26
+2008,kNN k=8 | row-standardised,0.363,26
+2008,kNN k=9 | binary,0.3486,26
+2008,kNN k=9 | row-standardised,0.3486,26
+2008,kNN k=10 | binary,0.3268,26
+2008,kNN k=10 | row-standardised,0.3268,26
+2008,Distance band 4 km | binary,0.6165,26
+2008,Distance band 4 km | row-standardised,0.6797,26
+2008,Distance band 6 km | binary,0.5624,26
+2008,Distance band 6 km | row-standardised,0.6524,26
+2008,Distance band 8 km | binary,0.4414,26
+2008,Distance band 8 km | row-standardised,0.5148,26
+2008,Inverse distance | raw,0.1571,26
+2008,Inverse distance | row-standardised,0.1626,26
+2009,kNN k=3 | binary,0.5897,26
+2009,kNN k=3 | row-standardised,0.5897,26
+2009,kNN k=4 | binary,0.5816,26
+2009,kNN k=4 | row-standardised,0.5816,26
+2009,kNN k=5 | binary,0.5419,26
+2009,kNN k=5 | row-standardised,0.5419,26
+2009,kNN k=6 | binary,0.4741,26
+2009,kNN k=6 | row-standardised,0.4741,26
+2009,kNN k=7 | binary,0.4198,26
+2009,kNN k=7 | row-standardised,0.4198,26
+2009,kNN k=8 | binary,0.369,26
+2009,kNN k=8 | row-standardised,0.369,26
+2009,kNN k=9 | binary,0.3544,26
+2009,kNN k=9 | row-standardised,0.3544,26
+2009,kNN k=10 | binary,0.3306,26
+2009,kNN k=10 | row-standardised,0.3306,26
+2009,Distance band 4 km | binary,0.6339,26
+2009,Distance band 4 km | row-standardised,0.6959,26
+2009,Distance band 6 km | binary,0.5714,26
+2009,Distance band 6 km | row-standardised,0.6576,26
+2009,Distance band 8 km | binary,0.4484,26
+2009,Distance band 8 km | row-standardised,0.5188,26
+2009,Inverse distance | raw,0.1599,26
+2009,Inverse distance | row-standardised,0.1651,26
+2010,kNN k=3 | binary,0.5829,26
+2010,kNN k=3 | row-standardised,0.5829,26
+2010,kNN k=4 | binary,0.5767,26
+2010,kNN k=4 | row-standardised,0.5767,26
+2010,kNN k=5 | binary,0.5372,26
+2010,kNN k=5 | row-standardised,0.5372,26
+2010,kNN k=6 | binary,0.4688,26
+2010,kNN k=6 | row-standardised,0.4688,26
+2010,kNN k=7 | binary,0.4102,26
+2010,kNN k=7 | row-standardised,0.4102,26
+2010,kNN k=8 | binary,0.3593,26
+2010,kNN k=8 | row-standardised,0.3593,26
+2010,kNN k=9 | binary,0.3461,26
+2010,kNN k=9 | row-standardised,0.3461,26
+2010,kNN k=10 | binary,0.3222,26
+2010,kNN k=10 | row-standardised,0.3222,26
+2010,Distance band 4 km | binary,0.6287,26
+2010,Distance band 4 km | row-standardised,0.6945,26
+2010,Distance band 6 km | binary,0.5667,26
+2010,Distance band 6 km | row-standardised,0.6581,26
+2010,Distance band 8 km | binary,0.4366,26
+2010,Distance band 8 km | row-standardised,0.5117,26
+2010,Inverse distance | raw,0.1571,26
+2010,Inverse distance | row-standardised,0.1631,26
+2011,kNN k=3 | binary,0.5886,26
+2011,kNN k=3 | row-standardised,0.5886,26
+2011,kNN k=4 | binary,0.5806,26
+2011,kNN k=4 | row-standardised,0.5806,26
+2011,kNN k=5 | binary,0.5405,26
+2011,kNN k=5 | row-standardised,0.5405,26
+2011,kNN k=6 | binary,0.4692,26
+2011,kNN k=6 | row-standardised,0.4692,26
+2011,kNN k=7 | binary,0.4073,26
+2011,kNN k=7 | row-standardised,0.4073,26
+2011,kNN k=8 | binary,0.3568,26
+2011,kNN k=8 | row-standardised,0.3568,26
+2011,kNN k=9 | binary,0.3407,26
+2011,kNN k=9 | row-standardised,0.3407,26
+2011,kNN k=10 | binary,0.318,26
+2011,kNN k=10 | row-standardised,0.318,26
+2011,Distance band 4 km | binary,0.6378,26
+2011,Distance band 4 km | row-standardised,0.7049,26
+2011,Distance band 6 km | binary,0.5764,26
+2011,Distance band 6 km | row-standardised,0.6694,26
+2011,Distance band 8 km | binary,0.4356,26
+2011,Distance band 8 km | row-standardised,0.5139,26
+2011,Inverse distance | raw,0.1563,26
+2011,Inverse distance | row-standardised,0.1628,26
+2012,kNN k=3 | binary,0.5942,26
+2012,kNN k=3 | row-standardised,0.5942,26
+2012,kNN k=4 | binary,0.586,26
+2012,kNN k=4 | row-standardised,0.586,26
+2012,kNN k=5 | binary,0.5526,26
+2012,kNN k=5 | row-standardised,0.5526,26
+2012,kNN k=6 | binary,0.4784,26
+2012,kNN k=6 | row-standardised,0.4784,26
+2012,kNN k=7 | binary,0.4134,26
+2012,kNN k=7 | row-standardised,0.4134,26
+2012,kNN k=8 | binary,0.3582,26
+2012,kNN k=8 | row-standardised,0.3582,26
+2012,kNN k=9 | binary,0.3426,26
+2012,kNN k=9 | row-standardised,0.3426,26
+2012,kNN k=10 | binary,0.3206,26
+2012,kNN k=10 | row-standardised,0.3206,26
+2012,Distance band 4 km | binary,0.6582,26
+2012,Distance band 4 km | row-standardised,0.7228,26
+2012,Distance band 6 km | binary,0.5817,26
+2012,Distance band 6 km | row-standardised,0.6735,26
+2012,Distance band 8 km | binary,0.4402,26
+2012,Distance band 8 km | row-standardised,0.5185,26
+2012,Inverse distance | raw,0.1578,26
+2012,Inverse distance | row-standardised,0.1644,26
+2013,kNN k=3 | binary,0.5774,26
+2013,kNN k=3 | row-standardised,0.5774,26
+2013,kNN k=4 | binary,0.5711,26
+2013,kNN k=4 | row-standardised,0.5711,26
+2013,kNN k=5 | binary,0.536,26
+2013,kNN k=5 | row-standardised,0.536,26
+2013,kNN k=6 | binary,0.4616,26
+2013,kNN k=6 | row-standardised,0.4616,26
+2013,kNN k=7 | binary,0.4005,26
+2013,kNN k=7 | row-standardised,0.4005,26
+2013,kNN k=8 | binary,0.3484,26
+2013,kNN k=8 | row-standardised,0.3484,26
+2013,kNN k=9 | binary,0.3316,26
+2013,kNN k=9 | row-standardised,0.3316,26
+2013,kNN k=10 | binary,0.3109,26
+2013,kNN k=10 | row-standardised,0.3109,26
+2013,Distance band 4 km | binary,0.6307,26
+2013,Distance band 4 km | row-standardised,0.6993,26
+2013,Distance band 6 km | binary,0.5745,26
+2013,Distance band 6 km | row-standardised,0.6607,26
+2013,Distance band 8 km | binary,0.4322,26
+2013,Distance band 8 km | row-standardised,0.5031,26
+2013,Inverse distance | raw,0.1533,26
+2013,Inverse distance | row-standardised,0.1589,26
+2014,kNN k=3 | binary,0.6251,25
+2014,kNN k=3 | row-standardised,0.6251,25
+2014,kNN k=4 | binary,0.5992,25
+2014,kNN k=4 | row-standardised,0.5992,25
+2014,kNN k=5 | binary,0.5332,25
+2014,kNN k=5 | row-standardised,0.5332,25
+2014,kNN k=6 | binary,0.4885,25
+2014,kNN k=6 | row-standardised,0.4885,25
+2014,kNN k=7 | binary,0.4205,25
+2014,kNN k=7 | row-standardised,0.4205,25
+2014,kNN k=8 | binary,0.4076,25
+2014,kNN k=8 | row-standardised,0.4076,25
+2014,kNN k=9 | binary,0.4032,25
+2014,kNN k=9 | row-standardised,0.4032,25
+2014,kNN k=10 | binary,0.36,25
+2014,kNN k=10 | row-standardised,0.36,25
+2014,Distance band 4 km | binary,0.6873,25
+2014,Distance band 4 km | row-standardised,0.7422,25
+2014,Distance band 6 km | binary,0.5659,25
+2014,Distance band 6 km | row-standardised,0.6683,25
+2014,Distance band 8 km | binary,0.4694,25
+2014,Distance band 8 km | row-standardised,0.5533,25
+2014,Inverse distance | raw,0.1811,25
+2014,Inverse distance | row-standardised,0.1868,25
+2015,kNN k=3 | binary,0.5967,26
+2015,kNN k=3 | row-standardised,0.5967,26
+2015,kNN k=4 | binary,0.5912,26
+2015,kNN k=4 | row-standardised,0.5912,26
+2015,kNN k=5 | binary,0.5528,26
+2015,kNN k=5 | row-standardised,0.5528,26
+2015,kNN k=6 | binary,0.4829,26
+2015,kNN k=6 | row-standardised,0.4829,26
+2015,kNN k=7 | binary,0.4223,26
+2015,kNN k=7 | row-standardised,0.4223,26
+2015,kNN k=8 | binary,0.3717,26
+2015,kNN k=8 | row-standardised,0.3717,26
+2015,kNN k=9 | binary,0.3528,26
+2015,kNN k=9 | row-standardised,0.3528,26
+2015,kNN k=10 | binary,0.3349,26
+2015,kNN k=10 | row-standardised,0.3349,26
+2015,Distance band 4 km | binary,0.673,26
+2015,Distance band 4 km | row-standardised,0.739,26
+2015,Distance band 6 km | binary,0.5945,26
+2015,Distance band 6 km | row-standardised,0.6741,26
+2015,Distance band 8 km | binary,0.4565,26
+2015,Distance band 8 km | row-standardised,0.5201,26
+2015,Inverse distance | raw,0.1639,26
+2015,Inverse distance | row-standardised,0.1686,26
+2016,kNN k=3 | binary,0.6042,26
+2016,kNN k=3 | row-standardised,0.6042,26
+2016,kNN k=4 | binary,0.5972,26
+2016,kNN k=4 | row-standardised,0.5972,26
+2016,kNN k=5 | binary,0.5567,26
+2016,kNN k=5 | row-standardised,0.5567,26
+2016,kNN k=6 | binary,0.4851,26
+2016,kNN k=6 | row-standardised,0.4851,26
+2016,kNN k=7 | binary,0.4245,26
+2016,kNN k=7 | row-standardised,0.4245,26
+2016,kNN k=8 | binary,0.3682,26
+2016,kNN k=8 | row-standardised,0.3682,26
+2016,kNN k=9 | binary,0.3508,26
+2016,kNN k=9 | row-standardised,0.3508,26
+2016,kNN k=10 | binary,0.3331,26
+2016,kNN k=10 | row-standardised,0.3331,26
+2016,Distance band 4 km | binary,0.6923,26
+2016,Distance band 4 km | row-standardised,0.7552,26
+2016,Distance band 6 km | binary,0.5987,26
+2016,Distance band 6 km | row-standardised,0.6784,26
+2016,Distance band 8 km | binary,0.458,26
+2016,Distance band 8 km | row-standardised,0.5229,26
+2016,Inverse distance | raw,0.1649,26
+2016,Inverse distance | row-standardised,0.1695,26
+2017,kNN k=3 | binary,0.6217,26
+2017,kNN k=3 | row-standardised,0.6217,26
+2017,kNN k=4 | binary,0.6132,26
+2017,kNN k=4 | row-standardised,0.6132,26
+2017,kNN k=5 | binary,0.5685,26
+2017,kNN k=5 | row-standardised,0.5685,26
+2017,kNN k=6 | binary,0.495,26
+2017,kNN k=6 | row-standardised,0.495,26
+2017,kNN k=7 | binary,0.4287,26
+2017,kNN k=7 | row-standardised,0.4287,26
+2017,kNN k=8 | binary,0.373,26
+2017,kNN k=8 | row-standardised,0.373,26
+2017,kNN k=9 | binary,0.357,26
+2017,kNN k=9 | row-standardised,0.357,26
+2017,kNN k=10 | binary,0.3363,26
+2017,kNN k=10 | row-standardised,0.3363,26
+2017,Distance band 4 km | binary,0.7025,26
+2017,Distance band 4 km | row-standardised,0.7692,26
+2017,Distance band 6 km | binary,0.6158,26
+2017,Distance band 6 km | row-standardised,0.6998,26
+2017,Distance band 8 km | binary,0.462,26
+2017,Distance band 8 km | row-standardised,0.533,26
+2017,Inverse distance | raw,0.1702,26
+2017,Inverse distance | row-standardised,0.1749,26
+2018,kNN k=3 | binary,0.6255,26
+2018,kNN k=3 | row-standardised,0.6255,26
+2018,kNN k=4 | binary,0.6136,26
+2018,kNN k=4 | row-standardised,0.6136,26
+2018,kNN k=5 | binary,0.5666,26
+2018,kNN k=5 | row-standardised,0.5666,26
+2018,kNN k=6 | binary,0.494,26
+2018,kNN k=6 | row-standardised,0.494,26
+2018,kNN k=7 | binary,0.4272,26
+2018,kNN k=7 | row-standardised,0.4272,26
+2018,kNN k=8 | binary,0.3739,26
+2018,kNN k=8 | row-standardised,0.3739,26
+2018,kNN k=9 | binary,0.3556,26
+2018,kNN k=9 | row-standardised,0.3556,26
+2018,kNN k=10 | binary,0.3365,26
+2018,kNN k=10 | row-standardised,0.3365,26
+2018,Distance band 4 km | binary,0.7071,26
+2018,Distance band 4 km | row-standardised,0.7766,26
+2018,Distance band 6 km | binary,0.6172,26
+2018,Distance band 6 km | row-standardised,0.7053,26
+2018,Distance band 8 km | binary,0.458,26
+2018,Distance band 8 km | row-standardised,0.5352,26
+2018,Inverse distance | raw,0.1706,26
+2018,Inverse distance | row-standardised,0.1761,26
+2019,kNN k=3 | binary,0.6379,26
+2019,kNN k=3 | row-standardised,0.6379,26
+2019,kNN k=4 | binary,0.6287,26
+2019,kNN k=4 | row-standardised,0.6287,26
+2019,kNN k=5 | binary,0.5834,26
+2019,kNN k=5 | row-standardised,0.5834,26
+2019,kNN k=6 | binary,0.5047,26
+2019,kNN k=6 | row-standardised,0.5047,26
+2019,kNN k=7 | binary,0.437,26
+2019,kNN k=7 | row-standardised,0.437,26
+2019,kNN k=8 | binary,0.3835,26
+2019,kNN k=8 | row-standardised,0.3835,26
+2019,kNN k=9 | binary,0.3647,26
+2019,kNN k=9 | row-standardised,0.3647,26
+2019,kNN k=10 | binary,0.3448,26
+2019,kNN k=10 | row-standardised,0.3448,26
+2019,Distance band 4 km | binary,0.7204,26
+2019,Distance band 4 km | row-standardised,0.7843,26
+2019,Distance band 6 km | binary,0.6363,26
+2019,Distance band 6 km | row-standardised,0.7235,26
+2019,Distance band 8 km | binary,0.4696,26
+2019,Distance band 8 km | row-standardised,0.5477,26
+2019,Inverse distance | raw,0.1726,26
+2019,Inverse distance | row-standardised,0.1787,26
+2020,kNN k=3 | binary,0.6324,26
+2020,kNN k=3 | row-standardised,0.6324,26
+2020,kNN k=4 | binary,0.6226,26
+2020,kNN k=4 | row-standardised,0.6226,26
+2020,kNN k=5 | binary,0.5836,26
+2020,kNN k=5 | row-standardised,0.5836,26
+2020,kNN k=6 | binary,0.5034,26
+2020,kNN k=6 | row-standardised,0.5034,26
+2020,kNN k=7 | binary,0.437,26
+2020,kNN k=7 | row-standardised,0.437,26
+2020,kNN k=8 | binary,0.3846,26
+2020,kNN k=8 | row-standardised,0.3846,26
+2020,kNN k=9 | binary,0.3663,26
+2020,kNN k=9 | row-standardised,0.3663,26
+2020,kNN k=10 | binary,0.3444,26
+2020,kNN k=10 | row-standardised,0.3444,26
+2020,Distance band 4 km | binary,0.7246,26
+2020,Distance band 4 km | row-standardised,0.7928,26
+2020,Distance band 6 km | binary,0.631,26
+2020,Distance band 6 km | row-standardised,0.7191,26
+2020,Distance band 8 km | binary,0.4689,26
+2020,Distance band 8 km | row-standardised,0.5459,26
+2020,Inverse distance | raw,0.1723,26
+2020,Inverse distance | row-standardised,0.1786,26
+2021,kNN k=3 | binary,0.6228,26
+2021,kNN k=3 | row-standardised,0.6228,26
+2021,kNN k=4 | binary,0.6161,26
+2021,kNN k=4 | row-standardised,0.6161,26
+2021,kNN k=5 | binary,0.5808,26
+2021,kNN k=5 | row-standardised,0.5808,26
+2021,kNN k=6 | binary,0.4993,26
+2021,kNN k=6 | row-standardised,0.4993,26
+2021,kNN k=7 | binary,0.4359,26
+2021,kNN k=7 | row-standardised,0.4359,26
+2021,kNN k=8 | binary,0.3825,26
+2021,kNN k=8 | row-standardised,0.3825,26
+2021,kNN k=9 | binary,0.3662,26
+2021,kNN k=9 | row-standardised,0.3662,26
+2021,kNN k=10 | binary,0.3395,26
+2021,kNN k=10 | row-standardised,0.3395,26
+2021,Distance band 4 km | binary,0.7148,26
+2021,Distance band 4 km | row-standardised,0.7824,26
+2021,Distance band 6 km | binary,0.6303,26
+2021,Distance band 6 km | row-standardised,0.7058,26
+2021,Distance band 8 km | binary,0.4716,26
+2021,Distance band 8 km | row-standardised,0.5356,26
+2021,Inverse distance | raw,0.1714,26
+2021,Inverse distance | row-standardised,0.1761,26
+2022,kNN k=3 | binary,0.6416,26
+2022,kNN k=3 | row-standardised,0.6416,26
+2022,kNN k=4 | binary,0.6315,26
+2022,kNN k=4 | row-standardised,0.6315,26
+2022,kNN k=5 | binary,0.5958,26
+2022,kNN k=5 | row-standardised,0.5958,26
+2022,kNN k=6 | binary,0.5071,26
+2022,kNN k=6 | row-standardised,0.5071,26
+2022,kNN k=7 | binary,0.4479,26
+2022,kNN k=7 | row-standardised,0.4479,26
+2022,kNN k=8 | binary,0.3919,26
+2022,kNN k=8 | row-standardised,0.3919,26
+2022,kNN k=9 | binary,0.3741,26
+2022,kNN k=9 | row-standardised,0.3741,26
+2022,kNN k=10 | binary,0.3461,26
+2022,kNN k=10 | row-standardised,0.3461,26
+2022,Distance band 4 km | binary,0.7231,26
+2022,Distance band 4 km | row-standardised,0.7674,26
+2022,Distance band 6 km | binary,0.6581,26
+2022,Distance band 6 km | row-standardised,0.7171,26
+2022,Distance band 8 km | binary,0.4925,26
+2022,Distance band 8 km | row-standardised,0.5457,26
+2022,Inverse distance | raw,0.1768,26
+2022,Inverse distance | row-standardised,0.179,26
+2023,kNN k=3 | binary,0.6396,26
+2023,kNN k=3 | row-standardised,0.6396,26
+2023,kNN k=4 | binary,0.6275,26
+2023,kNN k=4 | row-standardised,0.6275,26
+2023,kNN k=5 | binary,0.5884,26
+2023,kNN k=5 | row-standardised,0.5884,26
+2023,kNN k=6 | binary,0.4944,26
+2023,kNN k=6 | row-standardised,0.4944,26
+2023,kNN k=7 | binary,0.4344,26
+2023,kNN k=7 | row-standardised,0.4344,26
+2023,kNN k=8 | binary,0.3806,26
+2023,kNN k=8 | row-standardised,0.3806,26
+2023,kNN k=9 | binary,0.363,26
+2023,kNN k=9 | row-standardised,0.363,26
+2023,kNN k=10 | binary,0.335,26
+2023,kNN k=10 | row-standardised,0.335,26
+2023,Distance band 4 km | binary,0.7199,26
+2023,Distance band 4 km | row-standardised,0.7616,26
+2023,Distance band 6 km | binary,0.657,26
+2023,Distance band 6 km | row-standardised,0.718,26
+2023,Distance band 8 km | binary,0.481,26
+2023,Distance band 8 km | row-standardised,0.537,26
+2023,Inverse distance | raw,0.1733,26
+2023,Inverse distance | row-standardised,0.1761,26
+2024,kNN k=3 | binary,0.6741,26
+2024,kNN k=3 | row-standardised,0.6741,26
+2024,kNN k=4 | binary,0.6596,26
+2024,kNN k=4 | row-standardised,0.6596,26
+2024,kNN k=5 | binary,0.6202,26
+2024,kNN k=5 | row-standardised,0.6202,26
+2024,kNN k=6 | binary,0.5229,26
+2024,kNN k=6 | row-standardised,0.5229,26
+2024,kNN k=7 | binary,0.4604,26
+2024,kNN k=7 | row-standardised,0.4604,26
+2024,kNN k=8 | binary,0.4026,26
+2024,kNN k=8 | row-standardised,0.4026,26
+2024,kNN k=9 | binary,0.3821,26
+2024,kNN k=9 | row-standardised,0.3821,26
+2024,kNN k=10 | binary,0.3492,26
+2024,kNN k=10 | row-standardised,0.3492,26
+2024,Distance band 4 km | binary,0.7713,26
+2024,Distance band 4 km | row-standardised,0.7906,26
+2024,Distance band 6 km | binary,0.7013,26
+2024,Distance band 6 km | row-standardised,0.7443,26
+2024,Distance band 8 km | binary,0.5124,26
+2024,Distance band 8 km | row-standardised,0.5616,26
+2024,Inverse distance | raw,0.1866,26
+2024,Inverse distance | row-standardised,0.1875,26
+2025,kNN k=3 | binary,0.6633,26
+2025,kNN k=3 | row-standardised,0.6633,26
+2025,kNN k=4 | binary,0.6476,26
+2025,kNN k=4 | row-standardised,0.6476,26
+2025,kNN k=5 | binary,0.6102,26
+2025,kNN k=5 | row-standardised,0.6102,26
+2025,kNN k=6 | binary,0.5129,26
+2025,kNN k=6 | row-standardised,0.5129,26
+2025,kNN k=7 | binary,0.4503,26
+2025,kNN k=7 | row-standardised,0.4503,26
+2025,kNN k=8 | binary,0.3936,26
+2025,kNN k=8 | row-standardised,0.3936,26
+2025,kNN k=9 | binary,0.3745,26
+2025,kNN k=9 | row-standardised,0.3745,26
+2025,kNN k=10 | binary,0.3417,26
+2025,kNN k=10 | row-standardised,0.3417,26
+2025,Distance band 4 km | binary,0.7514,26
+2025,Distance band 4 km | row-standardised,0.7764,26
+2025,Distance band 6 km | binary,0.6839,26
+2025,Distance band 6 km | row-standardised,0.7321,26
+2025,Distance band 8 km | binary,0.5018,26
+2025,Distance band 8 km | row-standardised,0.5528,26
+2025,Inverse distance | raw,0.182,26
+2025,Inverse distance | row-standardised,0.1834,26
+2026,kNN k=3 | binary,0.6655,26
+2026,kNN k=3 | row-standardised,0.6655,26
+2026,kNN k=4 | binary,0.6424,26
+2026,kNN k=4 | row-standardised,0.6424,26
+2026,kNN k=5 | binary,0.6036,26
+2026,kNN k=5 | row-standardised,0.6036,26
+2026,kNN k=6 | binary,0.5042,26
+2026,kNN k=6 | row-standardised,0.5042,26
+2026,kNN k=7 | binary,0.4447,26
+2026,kNN k=7 | row-standardised,0.4447,26
+2026,kNN k=8 | binary,0.3911,26
+2026,kNN k=8 | row-standardised,0.3911,26
+2026,kNN k=9 | binary,0.3712,26
+2026,kNN k=9 | row-standardised,0.3712,26
+2026,kNN k=10 | binary,0.3388,26
+2026,kNN k=10 | row-standardised,0.3388,26
+2026,Distance band 4 km | binary,0.7513,26
+2026,Distance band 4 km | row-standardised,0.773,26
+2026,Distance band 6 km | binary,0.6794,26
+2026,Distance band 6 km | row-standardised,0.7305,26
+2026,Distance band 8 km | binary,0.4976,26
+2026,Distance band 8 km | row-standardised,0.5484,26
+2026,Inverse distance | raw,0.1817,26
+2026,Inverse distance | row-standardised,0.1832,26
+1995,kNN k=5 | balanced panel (22 towns),0.4336,22
+1996,kNN k=5 | balanced panel (22 towns),0.4305,22
+1997,kNN k=5 | balanced panel (22 towns),0.4552,22
+1998,kNN k=5 | balanced panel (22 towns),0.4808,22
+1999,kNN k=5 | balanced panel (22 towns),0.4792,22
+2000,kNN k=5 | balanced panel (22 towns),0.483,22
+2001,kNN k=5 | balanced panel (22 towns),0.4821,22
+2002,kNN k=5 | balanced panel (22 towns),0.4794,22
+2003,kNN k=5 | balanced panel (22 towns),0.4722,22
+2004,kNN k=5 | balanced panel (22 towns),0.4612,22
+2005,kNN k=5 | balanced panel (22 towns),0.4317,22
+2006,kNN k=5 | balanced panel (22 towns),0.4375,22
+2007,kNN k=5 | balanced panel (22 towns),0.4394,22
+2008,kNN k=5 | balanced panel (22 towns),0.4349,22
+2009,kNN k=5 | balanced panel (22 towns),0.4377,22
+2010,kNN k=5 | balanced panel (22 towns),0.4317,22
+2011,kNN k=5 | balanced panel (22 towns),0.449,22
+2012,kNN k=5 | balanced panel (22 towns),0.4688,22
+2013,kNN k=5 | balanced panel (22 towns),0.4491,22
+2014,kNN k=5 | balanced panel (22 towns),0.472,22
+2015,kNN k=5 | balanced panel (22 towns),0.4662,22
+2016,kNN k=5 | balanced panel (22 towns),0.4698,22
+2017,kNN k=5 | balanced panel (22 towns),0.4701,22
+2018,kNN k=5 | balanced panel (22 towns),0.4832,22
+2019,kNN k=5 | balanced panel (22 towns),0.5137,22
+2020,kNN k=5 | balanced panel (22 towns),0.5119,22
+2021,kNN k=5 | balanced panel (22 towns),0.5011,22
+2022,kNN k=5 | balanced panel (22 towns),0.5365,22
+2023,kNN k=5 | balanced panel (22 towns),0.5358,22
+2024,kNN k=5 | balanced panel (22 towns),0.5844,22
+2025,kNN k=5 | balanced panel (22 towns),0.5725,22
+2026,kNN k=5 | balanced panel (22 towns),0.5719,22

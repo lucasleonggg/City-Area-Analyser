@@ -51,15 +51,17 @@ def main():
     _install_pytest_shim()
 
     here = os.path.dirname(os.path.abspath(__file__))
-    target = os.path.join(here, "test_equity_factors.py")
-    spec = importlib.util.spec_from_file_location("test_equity_factors", target)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-
-    tests = sorted(
-        (name, fn) for name, fn in vars(module).items()
-        if name.startswith("test_") and callable(fn)
-    )
+    tests = []
+    for fname in sorted(os.listdir(here)):
+        if not (fname.startswith("test_") and fname.endswith(".py")):
+            continue
+        spec = importlib.util.spec_from_file_location(fname[:-3], os.path.join(here, fname))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        tests += sorted(
+            (f"{fname[:-3]}::{name}", fn) for name, fn in vars(module).items()
+            if name.startswith("test_") and callable(fn)
+        )
 
     passed, failures = 0, []
     for name, fn in tests:

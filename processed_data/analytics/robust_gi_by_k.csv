@@ -1,0 +1,209 @@
+k,town,label
+3,Ang Mo Kio,Not significant
+3,Bedok,Not significant
+3,Bishan,Not significant
+3,Bukit Batok,Not significant
+3,Bukit Merah,Not significant
+3,Bukit Panjang,Not significant
+3,Bukit Timah,Not significant
+3,Central Area,Not significant
+3,Choa Chu Kang,Not significant
+3,Clementi,Not significant
+3,Geylang,Not significant
+3,Hougang,Not significant
+3,Jurong East,Not significant
+3,Jurong West,Not significant
+3,Kallang/Whampoa,Not significant
+3,Marine Parade,Not significant
+3,Pasir Ris,Not significant
+3,Punggol,Not significant
+3,Queenstown,Not significant
+3,Sembawang,Not significant
+3,Sengkang,Not significant
+3,Serangoon,Not significant
+3,Tampines,Not significant
+3,Toa Payoh,Not significant
+3,Woodlands,Not significant
+3,Yishun,Not significant
+4,Ang Mo Kio,Not significant
+4,Bedok,Not significant
+4,Bishan,Not significant
+4,Bukit Batok,Not significant
+4,Bukit Merah,Hot spot (FDR<0.05)
+4,Bukit Panjang,Not significant
+4,Bukit Timah,Not significant
+4,Central Area,Not significant
+4,Choa Chu Kang,Cold spot (FDR<0.05)
+4,Clementi,Not significant
+4,Geylang,Not significant
+4,Hougang,Not significant
+4,Jurong East,Not significant
+4,Jurong West,Not significant
+4,Kallang/Whampoa,Not significant
+4,Marine Parade,Not significant
+4,Pasir Ris,Not significant
+4,Punggol,Not significant
+4,Queenstown,Hot spot (FDR<0.05)
+4,Sembawang,Not significant
+4,Sengkang,Not significant
+4,Serangoon,Not significant
+4,Tampines,Not significant
+4,Toa Payoh,Not significant
+4,Woodlands,Cold spot (FDR<0.05)
+4,Yishun,Not significant
+5,Ang Mo Kio,Not significant
+5,Bedok,Not significant
+5,Bishan,Not significant
+5,Bukit Batok,Cold spot (FDR<0.05)
+5,Bukit Merah,Hot spot (FDR<0.05)
+5,Bukit Panjang,Not significant
+5,Bukit Timah,Hot spot (FDR<0.05)
+5,Central Area,Hot spot (FDR<0.05)
+5,Choa Chu Kang,Cold spot (FDR<0.05)
+5,Clementi,Not significant
+5,Geylang,Not significant
+5,Hougang,Not significant
+5,Jurong East,Cold spot (FDR<0.05)
+5,Jurong West,Cold spot (FDR<0.05)
+5,Kallang/Whampoa,Hot spot (FDR<0.05)
+5,Marine Parade,Hot spot (FDR<0.05)
+5,Pasir Ris,Not significant
+5,Punggol,Not significant
+5,Queenstown,Hot spot (FDR<0.05)
+5,Sembawang,Cold spot (FDR<0.05)
+5,Sengkang,Not significant
+5,Serangoon,Not significant
+5,Tampines,Not significant
+5,Toa Payoh,Not significant
+5,Woodlands,Cold spot (FDR<0.05)
+5,Yishun,Cold spot (FDR<0.05)
+6,Ang Mo Kio,Not significant
+6,Bedok,Not significant
+6,Bishan,Not significant
+6,Bukit Batok,Not significant
+6,Bukit Merah,Hot spot (FDR<0.05)
+6,Bukit Panjang,Not significant
+6,Bukit Timah,Not significant
+6,Central Area,Hot spot (FDR<0.05)
+6,Choa Chu Kang,Cold spot (FDR<0.05)
+6,Clementi,Not significant
+6,Geylang,Not significant
+6,Hougang,Not significant
+6,Jurong East,Not significant
+6,Jurong West,Not significant
+6,Kallang/Whampoa,Hot spot (FDR<0.05)
+6,Marine Parade,Not significant
+6,Pasir Ris,Not significant
+6,Punggol,Not significant
+6,Queenstown,Hot spot (FDR<0.05)
+6,Sembawang,Cold spot (FDR<0.05)
+6,Sengkang,Not significant
+6,Serangoon,Not significant
+6,Tampines,Not significant
+6,Toa Payoh,Hot spot (FDR<0.05)
+6,Woodlands,Cold spot (FDR<0.05)
+6,Yishun,Not significant
+7,Ang Mo Kio,Not significant
+7,Bedok,Not significant
+7,Bishan,Not significant
+7,Bukit Batok,Not significant
+7,Bukit Merah,Hot spot (FDR<0.05)
+7,Bukit Panjang,Not significant
+7,Bukit Timah,Not significant
+7,Central Area,Hot spot (FDR<0.05)
+7,Choa Chu Kang,Not significant
+7,Clementi,Not significant
+7,Geylang,Not significant
+7,Hougang,Not significant
+7,Jurong East,Not significant
+7,Jurong West,Not significant
+7,Kallang/Whampoa,Hot spot (FDR<0.05)
+7,Marine Parade,Not significant
+7,Pasir Ris,Not significant
+7,Punggol,Not significant
+7,Queenstown,Hot spot (FDR<0.05)
+7,Sembawang,Not significant
+7,Sengkang,Not significant
+7,Serangoon,Not significant
+7,Tampines,Not significant
+7,Toa Payoh,Hot spot (FDR<0.05)
+7,Woodlands,Not significant
+7,Yishun,Not significant
+8,Ang Mo Kio,Not significant
+8,Bedok,Not significant
+8,Bishan,Not significant
+8,Bukit Batok,Not significant
+8,Bukit Merah,Hot spot (FDR<0.05)
+8,Bukit Panjang,Not significant
+8,Bukit Timah,Hot spot (FDR<0.05)
+8,Central Area,Hot spot (FDR<0.05)
+8,Choa Chu Kang,Not significant
+8,Clementi,Not significant
+8,Geylang,Hot spot (FDR<0.05)
+8,Hougang,Not significant
+8,Jurong East,Not significant
+8,Jurong West,Not significant
+8,Kallang/Whampoa,Hot spot (FDR<0.05)
+8,Marine Parade,Not significant
+8,Pasir Ris,Not significant
+8,Punggol,Not significant
+8,Queenstown,Not significant
+8,Sembawang,Cold spot (FDR<0.05)
+8,Sengkang,Not significant
+8,Serangoon,Not significant
+8,Tampines,Not significant
+8,Toa Payoh,Hot spot (FDR<0.05)
+8,Woodlands,Not significant
+8,Yishun,Not significant
+9,Ang Mo Kio,Not significant
+9,Bedok,Not significant
+9,Bishan,Hot spot (FDR<0.05)
+9,Bukit Batok,Not significant
+9,Bukit Merah,Hot spot (FDR<0.05)
+9,Bukit Panjang,Not significant
+9,Bukit Timah,Not significant
+9,Central Area,Hot spot (FDR<0.05)
+9,Choa Chu Kang,Not significant
+9,Clementi,Not significant
+9,Geylang,Hot spot (FDR<0.05)
+9,Hougang,Not significant
+9,Jurong East,Not significant
+9,Jurong West,Not significant
+9,Kallang/Whampoa,Hot spot (FDR<0.05)
+9,Marine Parade,Hot spot (FDR<0.05)
+9,Pasir Ris,Not significant
+9,Punggol,Not significant
+9,Queenstown,Hot spot (FDR<0.05)
+9,Sembawang,Not significant
+9,Sengkang,Not significant
+9,Serangoon,Not significant
+9,Tampines,Not significant
+9,Toa Payoh,Hot spot (FDR<0.05)
+9,Woodlands,Not significant
+9,Yishun,Not significant
+10,Ang Mo Kio,Not significant
+10,Bedok,Not significant
+10,Bishan,Hot spot (FDR<0.05)
+10,Bukit Batok,Not significant
+10,Bukit Merah,Hot spot (FDR<0.05)
+10,Bukit Panjang,Not significant
+10,Bukit Timah,Not significant
+10,Central Area,Hot spot (FDR<0.05)
+10,Choa Chu Kang,Not significant
+10,Clementi,Not significant
+10,Geylang,Not significant
+10,Hougang,Not significant
+10,Jurong East,Not significant
+10,Jurong West,Not significant
+10,Kallang/Whampoa,Hot spot (FDR<0.05)
+10,Marine Parade,Not significant
+10,Pasir Ris,Not significant
+10,Punggol,Not significant
+10,Queenstown,Hot spot (FDR<0.05)
+10,Sembawang,Cold spot (FDR<0.05)
+10,Sengkang,Not significant
+10,Serangoon,Not significant
+10,Tampines,Not significant
+10,Toa Payoh,Hot spot (FDR<0.05)
+10,Woodlands,Not significant
+10,Yishun,Not significant

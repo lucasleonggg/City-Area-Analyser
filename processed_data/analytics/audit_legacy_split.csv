@@ -1,0 +1,4 @@
+model,mode,r2,mae,rmse,mape_pct,n,median_ape_pct,within_5pct,within_10pct,bias_pct
+rf_v1 (published),frozen at 2018,0.3339,120331,157240,,193738,,,,
+v3 served model,index frozen at Dec 2018,0.3314,123521,157528,20.89,193738,22.03,17.2,28.3,-19.68
+v3 served model,index updated (nowcast),0.8899,43324,63917,7.33,193738,5.64,45.3,74.5,2.01

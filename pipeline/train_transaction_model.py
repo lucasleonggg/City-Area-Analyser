@@ -281,8 +281,8 @@ def stage_kmeans(Xv, n_clusters=4, n_init=10, n_rows=250_000, repeats=5):
     WHAT THIS IS NOT
     ----------------
     This is NOT the dashboard's town clustering. That call
-    (equity_factors.py, `KMeans(n_clusters=4, n_init=10)`) runs on 26 towns
-    x 5 factors, finishes in microseconds, and would show nothing
+    (equity_factors.py, `KMeans(n_clusters=4, n_init=10)`) runs on ~23 towns
+    x 6 equity factors, finishes in microseconds, and would show nothing
     whatever a backend did to it. Nothing measured here makes the live
     dashboard faster, and it must not be presented as if it did.
 

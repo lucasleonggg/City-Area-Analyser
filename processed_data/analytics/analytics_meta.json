@@ -1,0 +1,34 @@
+{
+  "block_morans_i": {
+    "I": 0.6366190758989666,
+    "p_sim": 0.005,
+    "n_blocks": 5957,
+    "band_km": 1.0,
+    "years": "2024-2026"
+  },
+  "built_utc": "2026-11-19T11:56:30.799129+00:00",
+  "n_transactions": 982011,
+  "first_month": "1990-01",
+  "last_month": "2026-07",
+  "reference_flat": {
+    "remaining_lease": 70.0,
+    "storey": 8.0,
+    "floor_area_by_type": {
+      "2-Room": 45.0,
+      "3-Room": 67.0,
+      "4-Room": 93.0,
+      "5-Room": 113.0,
+      "Executive": 145.0
+    },
+    "flat_model_by_type": {
+      "Multi-Generation": "Multi Generation",
+      "1-Room": "Improved",
+      "2-Room": "Standard",
+      "Executive": "Apartment",
+      "3-Room": "New Generation",
+      "5-Room": "Improved",
+      "4-Room": "Model A"
+    }
+  },
+  "town_weights_years": "2015-2025 transaction shares (fixed)"
+}

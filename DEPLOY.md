@@ -9,8 +9,10 @@ Three blockers were fixed in this repo. Do not undo them:
 1. **`processed_data/*.joblib` is no longer gitignored.** The dashboard loads
    `transaction_price_model.joblib` at runtime. Ignoring it deploys a broken
    page. Both models are under GitHub's 100MB per-file limit.
-2. **`scikit-learn` is pinned to `==1.8.0`**, the version that pickled the
-   model. An unpinned `>=` resolves to whatever is newest and unpickling across
+2. **Every runtime dependency is pinned exactly** (`==`) in
+   `dashboard/requirements.txt`, including `scikit-learn==1.9.1`, the version
+   that trained the served model. The model file records its training
+   versions and the Model Validation page warns if the deployment differs. An unpinned `>=` resolves to whatever is newest and unpickling across
    minor versions is not guaranteed to reconstruct the estimator.
 3. **Benchmark tooling moved to `requirements-dev.txt`.** `openvino`,
    `onnxruntime`, `skl2onnx` and `scikit-learn-intelex` total several hundred MB
@@ -44,18 +46,20 @@ GitHub's 100MB hard limit and nothing needs it at runtime.
    - Repository: `<you>/<repo>`
    - Branch: `main`
    - **Main file path: `dashboard/app.py`** ← this exact path
-   - Advanced settings → Python version **3.12**
+   - Advanced settings → Python version **3.12** (tested in CI, along with 3.13)
 
    Streamlit puts the main file's directory on `sys.path`, which is why
-   `dashboard/app.py` resolves `import views.price_trends` correctly. Verified.
+   `dashboard/app.py` resolves `import views.overview` correctly. Verified.
 
 4. **Watch the build log.** It installs `dashboard/requirements.txt`. First
    build takes 3-6 minutes. If it stalls past ~10, check that
    `requirements-dev.txt` was not picked up.
 
-5. **Click all five pages.** Price Trends, Map View, Affordability Analysis,
-   Access & Affordability Map, Transaction-Level Price Model. All five were
-   verified to render from a clean checkout containing only tracked files.
+5. **Click every page.** Overview, the eight numbered modules, Model
+   Validation, Research & Data and the three Supporting pages. All fourteen were verified to render
+   (headless Streamlit AppTest + browser screenshots) from a checkout without
+   the gitignored 132 MB CSV. Maps use `px.scatter_map`, so `plotly>=5.24`
+   is required; `scatter_mapbox` no longer exists in plotly 7.
 
 6. **Put the URL in the submission form and on the video end card.**
 

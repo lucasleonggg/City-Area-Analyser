@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store
+.streamlit/secrets.toml
+
+# Regenerable derived artifacts -- rebuild with pipeline/
+# git does not support trailing comments on pattern lines; each comment is
+# on its own line.
+
+# 126MB: exceeds GitHub's 100MB per-file hard limit. Not read at runtime.
+processed_data/hdb-all.csv
+processed_data/hdb-all-cleaned.csv
+
+# ~30MB: regenerate with `python pipeline/export_onnx.py`.
+processed_data/*.onnx
+
+# DELIBERATELY NOT IGNORED: transaction_price_model.joblib and
+# transaction_shapley_model.joblib. The dashboard loads them at RUNTIME, so a
+# deployment excluding them boots with a broken Transaction-Level Price Model
+# page. Both are under GitHub's 100MB per-file limit.
+
+# notebook checkpoints
+.ipynb_checkpoints/
