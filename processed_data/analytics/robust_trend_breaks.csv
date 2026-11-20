@@ -1,0 +1,26 @@
+spec,break_first_year_after,bic_step,bic_linear_trend,sen_slope_per_decade_before,sen_slope_per_decade_after,mk_p_before,mk_p_after,preferred_by_bic
+Distance band 4 km | binary,2014,-201.5128,-250.5068,0.0573,0.0601,0.0,0.0005,linear trend
+Distance band 4 km | row-standardised,2009,-191.0197,-231.6357,0.1023,0.0573,0.0,0.0004,linear trend
+Distance band 6 km | binary,2015,-197.4586,-258.9178,0.0629,0.0839,0.0,0.0005,linear trend
+Distance band 6 km | row-standardised,2008,-212.6476,-263.9097,0.0658,0.0521,0.0019,0.0,linear trend
+Distance band 8 km | binary,2014,-232.031,-260.262,0.0274,0.0391,0.0078,0.001,linear trend
+Distance band 8 km | row-standardised,2014,-244.9986,-261.4935,0.0185,0.0242,0.0051,0.0441,linear trend
+Inverse distance | raw,2014,-306.9208,-312.6284,0.0014,0.0135,0.5752,0.006,linear trend
+Inverse distance | row-standardised,2014,-305.4419,-315.3762,0.0058,0.01,0.046,0.0367,linear trend
+kNN k=10 | binary,2002,-269.7757,-267.9204,0.002,0.0124,1.0,0.0001,step
+kNN k=10 | row-standardised,2002,-269.7757,-267.9204,0.002,0.0124,1.0,0.0001,step
+kNN k=3 | binary,2014,-219.9372,-259.7459,0.0374,0.0513,0.0002,0.0008,linear trend
+kNN k=3 | row-standardised,2014,-219.9372,-259.7459,0.0374,0.0513,0.0002,0.0008,linear trend
+kNN k=4 | binary,2002,-221.7046,-238.8658,0.0785,0.0364,0.0163,0.0,linear trend
+kNN k=4 | row-standardised,2002,-221.7046,-238.8658,0.0785,0.0364,0.0163,0.0,linear trend
+kNN k=5 | balanced panel (22 towns),2019,-233.1921,-217.427,0.0026,0.11,0.5515,0.1078,step
+kNN k=5 | binary,2015,-223.8069,-273.9587,0.0393,0.0499,0.0,0.0005,linear trend
+kNN k=5 | row-standardised,2015,-223.8069,-273.9587,0.0393,0.0499,0.0,0.0005,linear trend
+kNN k=6 | binary,2002,-241.0833,-252.7107,0.0684,0.0266,0.0715,0.0,linear trend
+kNN k=6 | row-standardised,2002,-241.0833,-252.7107,0.0684,0.0266,0.0715,0.0,linear trend
+kNN k=7 | binary,2002,-256.8621,-258.8482,0.057,0.0184,0.1331,0.0,linear trend
+kNN k=7 | row-standardised,2002,-256.8621,-258.8482,0.057,0.0184,0.1331,0.0,linear trend
+kNN k=8 | binary,2014,-270.1123,-280.4295,0.0124,0.0191,0.0931,0.0586,linear trend
+kNN k=8 | row-standardised,2014,-270.1123,-280.4295,0.0124,0.0191,0.0931,0.0586,linear trend
+kNN k=9 | binary,2014,-267.623,-274.4003,0.0126,0.0199,0.0742,0.0586,linear trend
+kNN k=9 | row-standardised,2014,-267.623,-274.4003,0.0126,0.0199,0.0742,0.0586,linear trend

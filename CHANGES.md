@@ -1,3 +1,73 @@
+# EquiCity 3.2 — serial correlation in the clustering trend (20 Nov 2026)
+
+* **Problem.** The Mann–Kendall test on yearly Moran's I assumed the 32
+  yearly values were independent. They are not (lag-1 autocorrelation of the
+  detrended series up to 0.82), which overstates significance.
+* **Primary adjusted test: Hamed–Rao (1998).** The rise stays significant in
+  24 of 25 specifications; the balanced panel becomes borderline (p = 0.057;
+  0.070 with lags 1–3 only). The dashboard headline, notebook and paper now
+  lead with this, with the unadjusted test shown only for comparison.
+* **Short-series checks (`pipeline/trend_sensitivity.py`).**
+  * False-trend rates on 1,000 trendless AR(1) series of length 32: every
+    Mann–Kendall variant over-rejects when persistence is high (at 0.8:
+    ordinary 49%, Hamed–Rao 34%, trend-free pre-whitening 60%). Trend-free
+    pre-whitening's 25 of 25 is therefore not cited as support.
+  * Persistence-only simulations (4,000 trendless series per specification):
+    how often does persistence alone produce a rise as consistent as the
+    observed one? Below 0.05 in 24 of 25 specifications under the estimated
+    AR(1) (p ≤ 0.0002), an estimated AR(2) (p ≤ 0.0002), and a
+    bias-corrected AR(1) redrawn from its sampling distribution for every
+    series (p ≤ 0.001); 23 of 25 even at a pessimistic 0.9. The balanced
+    panel fails all four (p = 0.07–0.14).
+  * Structural break: a linear trend beats the best single level shift by
+    BIC in 22 of 25 specifications, and clustering rises on both sides of the
+    break in all 25. The balanced panel is flat until 2018 and rises after
+    2019 — its increase is recent, not three decades long.
+* **Conclusion.** The trend is well supported for the full set of towns. On
+  the balanced panel alone it is suggestive, recent and not established, so
+  new-town entry is no longer described as "ruled out". The paper now says
+  explicitly that the 25 specifications are robustness checks on shared
+  data, not 25 independent confirmations.
+* **Validation is mandatory.** `requirements-validation.txt` (pytest +
+  pymannkendall 1.4.3) is installed by CI, `reproduce.sh` and the README.
+  Every trend test, including Hamed–Rao with a lag limit, is checked against
+  pymannkendall on 150 series (persistence −0.5 to 0.9; falling, flat and
+  rising trends); the test fails rather than skips if the package is missing.
+  The persistence-only simulation is checked for calibration.
+* **Verified** from a clean Python 3.13 environment built only from
+  `dashboard/requirements.txt` + `requirements-validation.txt`, on a copy
+  without the ~120 MB transaction file: manifest OK, 219 tests pass. README
+  test count corrected (it still said 61).
+* **Full rebuild verified.** `bash reproduce.sh` run end to end from
+  `raw_data/` in the clean environment (exit 0, 219 tests pass). Every
+  analytics table matched the committed one except: run timestamps; two
+  random-forest prediction columns and town-quarter means that differ only
+  by floating-point rounding (≤ 1e-8 and ≤ $0.01); and `audit_subgroups.csv`,
+  whose rows came out in a different order — now sorted by name so the file
+  is byte-stable. `robust_moran_summary.csv` is now computed from the same
+  4-dp values written to `robust_moran_specs.csv`, so the full pipeline and
+  `--summary-only` agree to the digit.
+* Stale notes fixed: the raw files are now named by the period they contain,
+  and the current pipeline no longer produces duplicated year/quarter
+  columns (README notes 7–8, limitations A9, manifest).
+* Paper (working paper 3.2), methodology (3.2), data dictionary, limitations
+  register (B8), data dictionary, Spatial Inequality page and reproduction
+  notebook updated and consistent with each other.
+
+---
+
+# EquiCity 3.1 — small fixes (19 Nov 2026)
+
+* Paper, methodology, limitations and dashboard now use one term throughout:
+  **25 robustness specifications = 24 spatial-weight definitions + a
+  balanced panel**. Paper bumped to working paper 3.1.
+* Scenario Engine starts with an illustrative first-timer couple ($7,500 a
+  month, $40k cash, $60k CPF, $80k CPF Housing Grant) instead of a household
+  that could afford almost nothing, and says in words when nothing is within
+  reach and why.
+
+---
+
 # EquiCity 3.0 — what changed from v2, and why
 
 v3 does not add more of the same. It makes v2 harder to criticise: reproducible
@@ -42,8 +112,8 @@ from $34.9k to **$32.0k**; 80% intervals cover **80.3%**.
 * **Historical Transport Access** — rail access by town and year; descriptive
   event study around station openings (+0.9% in the opening year, +3.9% six
   years on, but a pre-opening upward trend rules out a causal reading).
-* **Spatial robustness** — 25 weight specifications, block-level windows,
-  balanced panel, 100 bootstrap re-fits per year, Gi\* stability.
+* **Spatial robustness** — 25 specifications (24 spatial-weight definitions
+  plus a balanced panel), block-level windows, 100 bootstrap re-fits per year, Gi\* stability.
 * **Validation** — 14 half-yearly origins out to 24 months (error 4.2% →
   12.0%, coverage 80% → 25%), market-index forecast baselines (a year ahead,
   ~5–7% error), predictor split into current valuation / scenario future value

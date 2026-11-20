@@ -1,0 +1,4 @@
+# Required to RUN THE TESTS (not to run the dashboard). Installed by CI and by
+# the reproduction instructions; tests fail, rather than skip, without it.
+pytest==9.1.1
+pymannkendall==1.4.3  # independent reference the trend-test implementations are checked against

@@ -30,17 +30,18 @@ and its 80% intervals cover **80.3%** of real future sales.
 ## Rebuilding everything
 
 ```bash
-pip install -r dashboard/requirements.txt pytest==9.1.1   # exact pins
+pip install -r dashboard/requirements.txt -r requirements-validation.txt   # exact pins
 bash reproduce.sh                  # verify inputs, rebuild every table and the model, run tests
 streamlit run dashboard/app.py     # ?page=scenario, ?page=policy ... deep-link to a module
-python -m pytest tests/            # 61 tests incl. a headless render of every page
+python -m pytest tests/            # 219 tests, incl. 150 checks of the trend tests against
+                                   # pymannkendall and a headless render of every page
 ```
 
 Inputs are checked against SHA-256 hashes in `raw_data/MANIFEST.csv`.
 CI (`.github/workflows/tests.yml`) runs the tests on Python 3.12 and 3.13 on
 every push.
 
-The pipeline needs `processed_data/hdb-all-cleaned.csv` (gitignored, 132 MB).
+The pipeline needs `processed_data/hdb-all-cleaned.csv` (gitignored, ~120 MB).
 The dashboard does not: it reads only `processed_data/analytics/*.csv`,
 `processed_data/price_model_v2.joblib` and `raw_data/`.
 
@@ -134,11 +135,14 @@ removed and replaced with the sources above.
 6. **Estate age for Bukit Timah is unavailable** and is median-imputed;
    `estate_age_imputed` flags it. Kallang/Whampoa and Central Area are mapped
    to `Kallang` and `Pearl's Hill (Chinatown)` respectively in the source file.
-7. **Raw filenames do not match contents.** e.g. `raw_data/hdb-2014-2016.csv`
-   actually holds 1990-01 → 1998-06. The pipeline reads by content, not
-   filename, so this is cosmetic — but do not trust the filenames.
-8. **`hdb-all-cleaned.csv` has duplicated `year`/`quarter` columns** from the
-   merge step; the loader drops the `.1` duplicates.
+7. **Raw filenames.** The original Data.gov.sg downloads were not named by
+   the period they contain; the files in `raw_data/` now are (checked 3.2:
+   each file's first and last month match its name). The pipeline reads by
+   content, not filename, either way.
+8. **Duplicated `year`/`quarter` columns.** Older builds of
+   `hdb-all-cleaned.csv` carried them; the current pipeline does not (checked
+   by a full rebuild in 3.2), and the loader still drops `.1` duplicates if
+   an old file is present.
 
 ---
 

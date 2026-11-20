@@ -157,3 +157,112 @@ def test_transactions_load_in_canonical_order(tmp_path=None):
         finally:
             common.DATA_PATH = old
     assert out[0].equals(out[1])
+
+
+# ----------------------- trend tests with serial correlation (3.2) -----------
+
+def _ar1_trend(n=32, phi=0.7, slope=0.0, seed=0):
+    rng = np.random.default_rng(seed)
+    e = np.zeros(n)
+    for t in range(1, n):
+        e[t] = phi * e[t - 1] + rng.normal()
+    return slope * np.arange(n) + e
+
+
+# 150 series: persistence from -0.5 to 0.9, falling / flat / rising trends,
+# 10 seeds each. pymannkendall is a REQUIRED validation dependency
+# (requirements-validation.txt): if it is missing this test fails, it does not skip.
+_GRID = [(phi, slope, seed) for phi in (-0.5, 0.0, 0.3, 0.6, 0.9)
+         for slope in (-0.05, 0.0, 0.05) for seed in range(10)]
+
+
+@pytest.mark.parametrize("phi,slope,seed", _GRID)
+def test_trend_tests_match_reference_implementation(phi, slope, seed):
+    import pymannkendall as mk
+    import spatial_robustness as SR
+    y = _ar1_trend(phi=phi, slope=slope, seed=seed)
+    with np.errstate(invalid="ignore"):
+        pairs = [
+            (SR.mann_kendall(y)[1], mk.original_test(y).p),
+            (SR.mann_kendall_hamed_rao(y)[1], mk.hamed_rao_modification_test(y).p),
+            (SR.mann_kendall_hamed_rao(y, max_lag=3)[1], mk.hamed_rao_modification_test(y, lag=3).p),
+            (SR.mann_kendall_tfpw(y)[1], mk.trend_free_pre_whitening_modification_test(y).p),
+            (SR.mann_kendall_prewhitened(y)[1], mk.pre_whitening_modification_test(y).p),
+        ]
+    for ours, ref in pairs:
+        if np.isnan(ref):
+            assert np.isnan(ours)
+        else:
+            assert ours == pytest.approx(ref, abs=1e-9)
+
+
+def test_reference_package_is_the_pinned_version():
+    import pymannkendall as mk
+    assert mk.__version__ == "1.4.3"
+
+
+def test_hamed_rao_is_less_confident_on_autocorrelated_noise():
+    import spatial_robustness as SR
+    y = _ar1_trend(phi=0.9, slope=0.0, seed=3)
+    assert SR.mann_kendall_hamed_rao(y)[1] >= SR.mann_kendall(y)[1]
+
+
+def test_moran_trend_summary_reports_adjusted_tests():
+    path = os.path.join(ROOT, "processed_data", "analytics", "robust_moran_summary.csv")
+    if not os.path.exists(path):
+        pytest.skip("analytics not built")
+    s = pd.read_csv(path)
+    for col in ("lag1_acf_detrended", "mk_hamed_rao_p", "mk_tfpw_p", "mk_prewhitened_p"):
+        assert col in s.columns
+    assert len(s) == 25
+
+
+def test_persistence_null_is_calibrated():
+    """On trendless AR(1) series with the true persistence, the simulated
+    p-value should reject about 5% of the time, not far more."""
+    import trend_sensitivity as TS
+    rng = np.random.default_rng(7)
+    old = TS.N_SIM
+    TS.N_SIM = 500
+    try:
+        Y = TS.ar1(200, 32, 0.8, rng)
+        rate = np.mean([TS.persistence_null_p(y, 0.8, rng) < 0.05 for y in Y])
+    finally:
+        TS.N_SIM = old
+    assert rate < 0.10
+
+
+def test_ar2_fit_recovers_coefficients():
+    import trend_sensitivity as TS
+    rng = np.random.default_rng(11)
+    y = TS.ar2(1, 5000, 0.5, -0.3, rng)[0]
+    phi1, phi2 = TS.fit_ar2(y)
+    assert phi1 == pytest.approx(0.5, abs=0.05)
+    assert phi2 == pytest.approx(-0.3, abs=0.05)
+
+
+def test_bias_correction_moves_persistence_up():
+    import trend_sensitivity as TS
+    assert TS.bias_corrected_ar1(0.5, 32) > 0.5
+    assert TS.bias_corrected_ar1(0.94, 32) <= 0.95
+
+
+def test_structural_break_tells_step_from_trend():
+    import trend_sensitivity as TS
+    yrs = np.arange(1995, 2027)
+    rng = np.random.default_rng(5)
+    step = np.where(yrs >= 2010, 1.0, 0.0) + rng.normal(0, 0.05, len(yrs))
+    trend = 0.03 * (yrs - 1995) + rng.normal(0, 0.05, len(yrs))
+    s = TS.structural_break(yrs, step)
+    t = TS.structural_break(yrs, trend)
+    assert s["preferred_by_bic"] == "step" and s["break_first_year_after"] == 2010
+    assert t["preferred_by_bic"] == "linear trend"
+    assert t["sen_slope_per_decade_before"] > 0 and t["sen_slope_per_decade_after"] > 0
+
+
+def test_trend_sensitivity_outputs_present():
+    for f in ("robust_trend_sensitivity.csv", "robust_trend_breaks.csv", "robust_trend_test_size.csv"):
+        path = os.path.join(ROOT, "processed_data", "analytics", f)
+        if not os.path.exists(path):
+            pytest.skip("analytics not built")
+        assert len(pd.read_csv(path)) > 0

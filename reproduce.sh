@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Rebuild every EquiCity result from the documented inputs in raw_data/.
 #
-#   pip install -r dashboard/requirements.txt pytest==9.1.1
+#   pip install -r dashboard/requirements.txt -r requirements-validation.txt
 #   bash reproduce.sh            # full rebuild, ~25 minutes on 2 cores
 #   bash reproduce.sh --fast     # skip the slow robustness bootstrap
 #
@@ -35,6 +35,9 @@ if [[ "${1:-}" != "--fast" ]]; then
   echo "== 6. spatial robustness + bootstrap uncertainty"
   python pipeline/spatial_robustness.py
 fi
+
+echo "== 6b. trend-test sensitivity (serial correlation, short series)"
+python pipeline/trend_sensitivity.py
 
 echo "== 7. tests"
 python -m pytest tests/ -q

@@ -4,7 +4,7 @@ raw_data/MonthlyHouseholdEmploymentIncomePerHouseholdMemberExcludingEmployerCPFC
 raw_data/bto-supply-pipeline.csv,9694,360b127c1bccfa30ed7eb3f15fc5b835fddd4d12484c63a0095fe762d23c7f3c,"v1 BTO launch list; provenance unverified, not used by any v3 analysis"
 raw_data/census2020_resident_households_by_planning_area_and_income_from_work.csv,3626,4eed79f0aaec1784b1c4964c9da67d414dd1890c959222b78bcebd4cfd1807b3,SingStat Census 2020 via Data.gov.sg d_4e150bbd35c3145ea43019212c7b46c2 (retrieved 2026-11-19)
 raw_data/estate-maturity.csv,3666,06eb1c23fa0cc0806c62249eed450cba29c8c9df3e3a74fe34989941ace38cbc,Estate age (v1)
-raw_data/hdb-1990-1999.csv,24822091,4425b3c49958386742dc3fbbfe9911122d8ca819451c5a29186c93bb20325e61,"Data.gov.sg, HDB Resale Flat Prices (collection 189); filenames do not match contents, see README"
+raw_data/hdb-1990-1999.csv,24822091,4425b3c49958386742dc3fbbfe9911122d8ca819451c5a29186c93bb20325e61,"Data.gov.sg, HDB Resale Flat Prices (collection 189); files renamed to the period they contain, see README"
 raw_data/hdb-2000-2012.csv,32216053,faa1fe7ed16753c0bb93c3428987a5fe056633adfff6d50cdb63310bb994592d,"Data.gov.sg, HDB Resale Flat Prices"
 raw_data/hdb-2012-2014.csv,4515091,043095aaef7e3b66befd2755526aa43706b21e825b24a746ce2748b36c71c864,"Data.gov.sg, HDB Resale Flat Prices"
 raw_data/hdb-2015-2016.csv,3319894,94ca43c615e43dd791b9bb70351ef55e855137241efb2086650715c2f381698e,"Data.gov.sg, HDB Resale Flat Prices"
@@ -21,4 +21,4 @@ raw_data/polyclinics_nhg.csv,665,da5c6de51e3a040d46dd0213259eed06518694552b46b90
 raw_data/polyclinics_nuhs.csv,398,b97e48a19435602c32a48957135488d489665f01f6bbd9cb714753a4f0cf777d,NUHS polyclinics (v1)
 raw_data/rail_stations_opening_dates.csv,17732,e4515ba29cd9975486e9abd907ef47593e3cb31479df688e48c1168025b1910a,"Derived: LTA exit coordinates + Wikipedia opening dates (List of Singapore MRT/LRT stations, retrieved 2026-11-19); LRT dates hand-checked"
 raw_data/singstat_household_employment_income_percentiles_excl_employer_cpf_2000_2025.csv,1428,26feed49fa408824e0cb810a209af59794b780488dd137012cbd41f64b742807,SingStat via Data.gov.sg d_650c42ad53d69ad3f6f47f04c21616fb (retrieved 2026-11-19)
-processed_data/hdb-all-cleaned.csv,132346359,6af81888c52803f6dd4dca640a4792a2b477fba27504b7dbe51e30a0729a287f,pipeline/merge.py + clean.py from raw_data/hdb-*.csv (not committed: 132 MB) [content hash]
+processed_data/hdb-all-cleaned.csv,119580203,6af81888c52803f6dd4dca640a4792a2b477fba27504b7dbe51e30a0729a287f,pipeline/merge.py + clean.py from raw_data/hdb-*.csv (not committed: ~120 MB) [content hash]

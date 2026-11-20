@@ -17,7 +17,7 @@ Status: **Open** (affects current results), **Mitigated** (reduced, not removed)
 | A6 | Station opening dates come from Wikipedia; LRT dates hand-checked | Time-correct rail access, event study | Small timing errors possible | Mitigated. Cross-check against LTA/NLB records |
 | A7 | Ten Mile Junction LRT (1999–2019) absent from the 2025 LTA file | Rail access near Bukit Panjang | Understates access there, 1999–2018 | Open |
 | A8 | Straight-line distances, not walking distance or journey time | Rail access, CBD distance, v1 commute proxy | Noise; under-states barriers such as expressways | Open. OneMap routing API would fix |
-| A9 | Raw HDB filenames do not match their contents | None (pipeline reads by content) | — | Documented |
+| A9 | Original Data.gov.sg downloads were not named by the period they contain | None (files renamed; pipeline reads by content regardless) | — | Resolved |
 
 ## B. Method
 
@@ -28,8 +28,9 @@ Status: **Open** (affects current results), **Mitigated** (reduced, not removed)
 | B3 | Log-price OLS gives a median-like level; no smearing correction | Price levels | ~0.5–1% low, uniform; no effect on comparisons | Documented |
 | B4 | EquiCity's index drifts ~3% above HDB's official RPI by 2026 | Levels compared with official figures | Small | Documented; changes track closely (r = 0.83) |
 | B5 | Equal weight per town in spatial statistics, not population-weighted | Moran's I, Theil, CV | Small towns count as much as large ones | Open. Population-weighted variant would test it |
-| B6 | Town-level spatial statistics have only 26 units | Moran's I, Gi* | Gi* labels are fragile (see robustness); global trend is robust | Mitigated: 24 weight specs, bootstrap, block-level check |
+| B6 | Town-level spatial statistics have only 26 units | Moran's I, Gi* | Gi* labels are fragile (see robustness); global trend is robust | Mitigated: 25 specifications (24 weight definitions + balanced panel), bootstrap, block-level check |
 | B7 | Block-level clustering does **not** show the rising trend seen at town level | Interpretation of "clustering intensified" | The rise is between towns/regions, not within neighbourhoods | Reported as a finding |
+| B8 | Yearly Moran's I values are serially correlated (lag-1 up to 0.82 after detrending) and there are only 32 of them, so trend tests over-reject: on trendless series this short, Hamed–Rao still reports a false trend 20–45% of the time at persistence 0.7–0.9 | Trend significance of town-level clustering | The balanced-panel trend is not established (Hamed–Rao p = 0.057; simulation p = 0.07–0.14) and is concentrated after 2019; the full-set trend is | Mitigated (3.2): Hamed–Rao as primary test; lag sensitivity; persistence-only simulations under AR(1), AR(2), bias-corrected AR(1) with parameter uncertainty and a pessimistic 0.9 (24, 24, 24 and 23 of 25 specifications p < 0.05); structural-break check (linear trend preferred in 22 of 25, rising on both sides of the break in 25 of 25) |
 
 ## C. Affordability, Scenario Engine and Policy Lab
 

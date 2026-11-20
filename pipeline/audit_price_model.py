@@ -247,7 +247,10 @@ def subgroup_tables(all_pred):
     p["price_band"] = pd.qcut(p["resale_price"], 5, labels=["Q1 (cheapest)", "Q2", "Q3", "Q4", "Q5 (dearest)"])
     rows = []
     for dim in ["town", "flat_type", "region", "lease_band", "price_band", "origin"]:
-        for k, g in p.groupby(dim, observed=True):
+        # Bands keep their natural order; everything else is sorted by name so the
+        # table does not depend on the order categories first appear in the data.
+        key = p[dim] if dim in ("lease_band", "price_band") else p[dim].astype(str)
+        for k, g in p.groupby(key, observed=True, sort=True):
             if len(g) < 30:
                 continue
             rows.append({

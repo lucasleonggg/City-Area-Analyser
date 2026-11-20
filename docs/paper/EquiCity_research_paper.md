@@ -1,6 +1,6 @@
 # The Evolution of Spatial Inequality and Housing Affordability in Singapore's HDB Resale Market, 1990–2026
 
-**Lucas Leong Ting Wai** · Working paper, version 3.0 (draft) · November 2026
+**Lucas Leong Ting Wai** · Working paper, version 3.2 (draft) · November 2026
 
 *Not peer reviewed. Comments on the methods are actively sought. All results
 reproduce from public data with `bash reproduce.sh` in the EquiCity
@@ -22,9 +22,10 @@ financed with a standard HDB loan costs 19.7% of income in 2026, up from
 percentile it is within the 30% Mortgage Servicing Ratio cap in 9 of 26
 towns, down from 16 in 2019. Second, location premia have become more
 spatially clustered at town level — Moran's I rose from about 0.48 in
-1995–99 to 0.60 in 2022–26 — and this rise holds under all 25 spatial
-specifications tested, under bootstrap resampling, and on a balanced panel
-that excludes new towns. Yet the same statistic computed across blocks shows
+1995–99 to 0.60 in 2022–26 — and this rise holds under all 25 robustness
+specifications (24 definitions of which towns count as neighbours, plus a
+balanced panel that excludes new towns) and under bootstrap resampling, and stays significant after correcting
+for serial correlation in all but the balanced panel. Yet the same statistic computed across blocks shows
 no comparable rise: the intensification is a between-town, increasingly
 between-region phenomenon (the between-region share of cross-town price
 inequality rose from about 71% to 78–80%), not a sharpening within
@@ -111,9 +112,14 @@ against incomes.
 location premia each year; Getis-Ord Gi\* for local hot and cold spots with
 conditional permutation p-values and Benjamini–Hochberg correction; Theil T
 decomposed into between- and within-region parts; the coefficient of
-variation of constant-quality prices. Robustness: 24 spatial-weight
-specifications plus a balanced panel; block-level Moran's I in 3-year windows
-at three distance bands; 100 bootstrap re-fits per year.
+variation of constant-quality prices. Robustness: 25 specifications (24
+spatial-weight definitions plus a balanced panel); block-level Moran's I in 3-year windows
+at three distance bands; 100 bootstrap re-fits per year. Trends in the yearly
+Moran's I series are tested with Mann–Kendall; because adjacent years are
+correlated, the Hamed–Rao correction is the primary test, checked against
+simulations of how often persistence alone (AR(1), AR(2), and AR(1) with
+parameter uncertainty) produces a comparable rise, and against a
+single-break step model.
 
 ## 4. Results
 
@@ -156,15 +162,53 @@ decades.
   (1995) to 0.60 (2026); 95% bootstrap intervals are at most ±0.013, so the
   change is far larger than sampling noise.
 * **Specification.** Clustering in 2022–26 exceeds 1995–99 in all 25
-  specifications (kNN with k = 3–10, distance bands of 4, 6 and 8 km,
-  inverse distance, each binary and row-standardised, and a balanced panel),
-  and every one shows a significant upward Mann–Kendall trend (p < 0.001
-  for all but the balanced panel, p = 0.0002). The *size* of the rise
+  specifications: 24 spatial-weight definitions (kNN with k = 3–10,
+  distance bands of 4, 6 and 8 km, inverse distance, each binary and
+  row-standardised) plus a balanced panel,
+  and every one shows an upward trend that the ordinary (unadjusted)
+  Mann–Kendall test calls significant; the next point shows how much of that
+  survives a correction for serial correlation. The *size* of the rise
   depends on the specification — from +0.03 with inverse-distance weights to
   +0.21 with a 4 km band — so the honest claim is directional.
+* **Serial correlation.** The ordinary Mann–Kendall test treats the 32
+  yearly values as independent, but adjacent years are correlated (lag-1
+  autocorrelation of the detrended series up to 0.82), which overstates
+  significance. The primary adjusted test is the Hamed–Rao (1998) variance
+  correction: the rise remains significant in 24 of 25 specifications
+  (p ≤ 0.0001), the exception being the balanced panel, the most
+  autocorrelated series, at p = 0.057 (0.070 if only lags 1–3 are used).
+* **Short-series checks.** Thirty-two observations are few for estimating
+  serial dependence. On simulated trendless series of that length, every
+  Mann–Kendall variant over-rejects when persistence is high: at an AR(1)
+  coefficient of 0.8, Hamed–Rao reports a false trend 34% of the time and
+  trend-free pre-whitening 60%, so the latter's 25 of 25 is not cited as
+  support. I therefore ask directly how often persistence alone, with no
+  trend, produces a rise as consistent as the observed one (4,000
+  simulations per specification). With each specification's estimated AR(1)
+  persistence, p ≤ 0.0002 for 24 of 25; with an AR(2) instead, p ≤ 0.0002
+  for 24 of 25; with the AR(1) coefficient bias-corrected for the short
+  sample and drawn afresh for every simulation to carry its estimation
+  uncertainty, p ≤ 0.001 for 24 of 25; and with a deliberately pessimistic
+  persistence of 0.9, 23 of 25 stay below 0.05 (inverse-distance weights
+  reach 0.055). The balanced panel fails all four (p = 0.07–0.14).
+* **Steady rise or one-off shift?** A single level shift could mimic a
+  trend. Fitting the best one-break step model to each series, a linear
+  trend is preferred by BIC in 22 of 25 specifications, and the Sen slope is
+  positive on both sides of the best break in all 25. The exceptions are
+  kNN with k = 10 and, notably, the balanced panel, which is flat until 2018
+  and rises after 2019 (0.11 per decade): on the 22 continuously present
+  towns the increase is concentrated in the recent boom rather than spread
+  over three decades.
+* **What this adds up to.** The 25 specifications share the same
+  transactions and overlapping neighbour structures, so they are robustness
+  checks, not 25 independent confirmations. For the full set of towns the
+  rise survives every check above; on the balanced panel alone it is
+  suggestive, recent, and not established.
 * **New towns.** Restricting to the 22 towns with 30+ sales in every year
-  from 1995 still gives a rise (0.46 → 0.56), so the trend is not produced by
-  peripheral new towns entering the sample.
+  from 1995 still gives a rise (0.46 → 0.56), so the direction is not an
+  artefact of peripheral new towns entering the sample, although on this
+  smaller panel the trend is only borderline once serial correlation is
+  allowed for.
 * **A different unit.** At block level the picture changes. Moran's I across
   roughly 4,900–6,900 blocks with a 1 km band is high (about 0.65–0.70) but
   essentially flat from 1996–98 to 2023–25. Neighbouring blocks have always
@@ -224,8 +268,11 @@ a description, not an estimate of what stations cause.
 ## 5. Alternative explanations
 
 * **Composition.** Rising clustering could reflect which towns exist, not
-  how prices relate. The balanced-panel check rules out new-town entry as the
-  main driver.
+  how prices relate. On the balanced panel of 22 towns the rise is smaller
+  (0.46 → 0.56), concentrated after 2019 and, once serial correlation is
+  allowed for, only borderline significant, so new-town entry cannot be
+  fully ruled out as a contributor to the long-run rise, though the
+  direction is the same.
 * **Measurement.** The reference-flat approach assumes the town premium is
   the same for all flat types. If central towns' premia are larger for small
   flats, the regional divide for those flats is understated, not overstated.
@@ -282,6 +329,9 @@ Benjamini, Y., & Hochberg, Y. (1995). Controlling the false discovery rate.
 Getis, A., & Ord, J. K. (1992). The analysis of spatial association by use of
 distance statistics. *Geographical Analysis*, 24(3), 189–206.
 
+Hamed, K. H., & Rao, A. R. (1998). A modified Mann–Kendall trend test for
+autocorrelated data. *Journal of Hydrology*, 204(1–4), 182–196.
+
 Mann, H. B. (1945). Nonparametric tests against trend. *Econometrica*, 13(3),
 245–259.
 
@@ -298,6 +348,13 @@ Shapley, L. S. (1953). A value for n-person games. In *Contributions to the
 Theory of Games II*, 307–317.
 
 Theil, H. (1967). *Economics and Information Theory*. North-Holland.
+
+von Storch, H. (1995). Misuses of statistical analysis in climate research. In
+*Analysis of Climate Variability* (pp. 11–26). Springer.
+
+Yue, S., Pilon, P., Phinney, B., & Cavadias, G. (2002). The influence of
+autocorrelation on the ability to detect trend in hydrological series.
+*Hydrological Processes*, 16(9), 1807–1829.
 
 Data: Housing & Development Board, Singapore Department of Statistics, Land
 Transport Authority, Singapore Land Authority (OneMap), via Data.gov.sg.
