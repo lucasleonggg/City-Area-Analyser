@@ -1,6 +1,6 @@
 # EquiCity methodology
 
-Version 3.0 · November 2026 · Lucas Leong Ting Wai
+Version 3.2 · November 2026 · Lucas Leong Ting Wai
 
 This document describes how every number in EquiCity is produced. Each
 section names the script that implements it. The whole pipeline reruns with
@@ -9,7 +9,8 @@ section names the script that implements it. The whole pipeline reruns with
 ## 1. Data preparation (`pipeline/merge.py`, `clean.py`, `common.py`)
 
 Five HDB resale files (Jan 1990 – Jul 2026) are merged by content, not by
-filename (the filenames do not match their contents). Town, flat type and
+filename (the original downloads were not named by the period they
+contain). Town, flat type and
 flat model spellings are standardised; remaining lease is parsed from text
 where published and computed from lease start otherwise; the storey range is
 reduced to its midpoint. Result: 982,011 transactions across 27 towns.
@@ -84,9 +85,24 @@ is available.
   residual from that year's hedonic fit + its town's premium, pooled over
   the last three years (≥5 sales); Gi\* with a 1 km band, analytic z, FDR.
 * **Robustness.** Moran's I of the town premium every year 1995–2026 under
-  24 weight specifications (kNN k=3–10, distance bands 4/6/8 km, inverse
-  distance; binary and row-standardised), with Sen's slope and a
-  Mann–Kendall trend test; block-level Moran's I by 3-year window with
+  25 specifications — 24 spatial-weight definitions (kNN k=3–10, distance
+  bands 4/6/8 km, inverse distance; binary and row-standardised) plus a
+  balanced panel of the 22 towns present every year — with Sen's slope and a
+  Mann–Kendall trend test. Adjacent years' values are not independent, so
+  the primary test is the Hamed–Rao (1998) corrected Mann–Kendall; trend-free
+  and plain pre-whitening are reported as sensitivity checks only.
+  `pipeline/trend_sensitivity.py` then (i) re-runs Hamed–Rao with lags 1–3
+  only; (ii) simulates 4,000 trendless series per specification to ask how
+  often persistence alone produces a rise as consistent as the observed one,
+  under the estimated AR(1), a pessimistic AR(1) of 0.9, an estimated AR(2),
+  and a bias-corrected AR(1) whose coefficient is redrawn from its sampling
+  distribution for every simulated series (parameter uncertainty);
+  (iii) fits the best single mean-shift break (segments ≥ 6 years) and
+  compares it with a linear trend by BIC, with Sen slopes on each side; and
+  (iv) measures each test's false-trend rate on trendless series of length
+  32. The 25 specifications share data and neighbour structures: they are
+  robustness checks, not independent replications;
+  block-level Moran's I by 3-year window with
   0.5/1/2 km bands; 100 bootstrap re-fits of the hedonic regression per year
   (transactions resampled within year) for 95% intervals on premia and on
   Moran's I, and for the share of re-fits in which each town is a Gi\* hot

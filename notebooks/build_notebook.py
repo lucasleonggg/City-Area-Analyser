@@ -46,9 +46,27 @@ cells = [
          "af30.groupby('year').within_cap.sum().loc[[2013, 2015, 2019, 2022, 2025, 2026]]"),
     md("## 3. Spatial clustering of location premia"),
     code("rs = T('robust_moran_summary.csv')\n"
-         "print(f\"{(rs.change > 0).sum()} of {len(rs)} specifications rise; \"\n"
-         "      f\"{((rs.mann_kendall_p < 0.05) & (rs.mann_kendall_z > 0)).sum()} significantly\")\n"
-         "rs[['spec', 'I_1995_99', 'I_2022_26', 'change', 'mann_kendall_p']].round(3)"),
+         "print(f\"Rising 1995-99 -> 2022-26: {(rs.change > 0).sum()} of {len(rs)} specifications\")\n"
+         "print(f\"PRIMARY  significant after Hamed-Rao serial-correlation correction: \"\n"
+         "      f\"{((rs.mk_hamed_rao_p < 0.05) & (rs.change > 0)).sum()} of {len(rs)}\")\n"
+         "print(f\"(unadjusted Mann-Kendall, which assumes independent years and overstates confidence: \"\n"
+         "      f\"{((rs.mann_kendall_p < 0.05) & (rs.mann_kendall_z > 0)).sum()} of {len(rs)})\")\n"
+         "rs[['spec', 'I_1995_99', 'I_2022_26', 'change', 'lag1_acf_detrended', 'mk_hamed_rao_p', 'mann_kendall_p']].round(3)"),
+    md("Thirty-two yearly values are few for estimating serial dependence. `trend_sensitivity.py` checks the "
+       "Hamed-Rao result against its lag choice and simulates how often persistence alone (trendless AR(1) "
+       "series) produces a rise as consistent as the observed one."),
+    code("ts = T('robust_trend_sensitivity.csv')\n"
+         "for c in ['mk_hamed_rao_p_all_lags', 'mk_hamed_rao_p_lags_1_3', 'sim_p_fitted_phi', 'sim_p_ar2',\n"
+         "          'sim_p_phi_uncertain', 'sim_p_phi_0_9']:\n"
+         "    print(f'{c:26s} {(ts[c] < 0.05).sum()} of {len(ts)} below 0.05')\n"
+         "ts.round(4)"),
+    code("T('robust_trend_test_size.csv')  # false-trend rate on trendless series (ideal 0.05)"),
+    md("Steady rise or one-off shift? Best single level-shift break against a linear trend (BIC), "
+       "with the trend on each side of the break."),
+    code("br = T('robust_trend_breaks.csv')\n"
+         "print(f\"linear trend preferred in {(br.preferred_by_bic == 'linear trend').sum()} of {len(br)}; \"\n"
+         "      f\"rising on both sides in {((br.sen_slope_per_decade_before > 0) & (br.sen_slope_per_decade_after > 0)).sum()} of {len(br)}\")\n"
+         "br.round(3)"),
     code("T('robust_moran_ci.csv').query('year in [1995, 2005, 2015, 2019, 2026]').round(3)"),
     code("T('robust_block_moran.csv').pivot(index='window', columns='band_km', values='I').round(3)"),
     md("## 4. Regional share of cross-town inequality and price dispersion"),

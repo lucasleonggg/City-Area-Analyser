@@ -3,7 +3,7 @@
     python pipeline/build_analytics.py
 
 Writes to processed_data/analytics/ (all small CSVs, so the deployed
-dashboard never touches the 132 MB transaction file):
+dashboard never touches the ~120 MB transaction file):
 
   hedonic_town_year_type.csv  constant-quality price of a reference flat,
                               by town x flat type x year (1990-2026)

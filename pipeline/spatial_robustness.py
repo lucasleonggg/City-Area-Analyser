@@ -10,8 +10,11 @@ each yearly number is.
 1. SPECIFICATION GRID (town level, 1995-2026). Moran's I of the location
    premium every year under: k-nearest neighbours k = 3..10, distance bands
    4/6/8 km, inverse-distance weights, each binary and row-standardised.
-   For each specification: Sen's slope per decade, Mann-Kendall trend test,
-   and the change between 1995-99 and 2022-26 averages.
+   Plus a balanced panel (towns present every year): 25 specifications in
+   all. For each: Sen's slope per decade, Mann-Kendall trend test,
+   and the change between 1995-99 and 2022-26 averages. Yearly values are
+   serially correlated, so the trend test is also run with the Hamed-Rao
+   variance correction and with trend-free pre-whitening (3.2).
 
 2. A DIFFERENT UNIT: blocks. Block location premia pooled over 3-year
    windows (1996-98 ... 2024-26), Moran's I with 0.5, 1 and 2 km bands.
@@ -91,14 +94,109 @@ def morans_perm_p(x, W, n=499, seed=0):
     return (np.sum(perms >= I) + 1) / (n + 1)
 
 
-def mann_kendall(y):
-    y = np.asarray(y)
+def _mk_s(y):
     n = len(y)
-    s = sum(np.sign(y[j] - y[i]) for i in range(n - 1) for j in range(i + 1, n))
-    var = n * (n - 1) * (2 * n + 5) / 18
-    z = (s - np.sign(s)) / np.sqrt(var) if s != 0 else 0.0
+    return float(sum(np.sign(y[j] - y[i]) for i in range(n - 1) for j in range(i + 1, n)))
+
+
+def _mk_var(y):
+    """Variance of S with the tie correction."""
+    n = len(y)
+    _, t = np.unique(y, return_counts=True)
+    return (n * (n - 1) * (2 * n + 5) - np.sum(t * (t - 1) * (2 * t + 5))) / 18
+
+
+def _z_p(s, var):
     from scipy.stats import norm
+    z = (s - np.sign(s)) / np.sqrt(var) if s != 0 else 0.0
     return float(z), float(2 * (1 - norm.cdf(abs(z))))
+
+
+def _acf(x, nlags):
+    y = x - x.mean()
+    n = len(x)
+    acov = np.correlate(y, y, "full")[n - 1:] / n
+    return acov[: nlags + 1] / acov[0]
+
+
+def _sen_detrend(y):
+    n = len(y)
+    slope = sen_slope(np.arange(n), y)
+    return y - np.arange(1, n + 1) * slope, slope
+
+
+def mann_kendall(y):
+    """Original Mann-Kendall test. Assumes the yearly values are independent."""
+    y = np.asarray(y, float)
+    return _z_p(_mk_s(y), _mk_var(y))
+
+
+def mann_kendall_hamed_rao(y, alpha=0.05, max_lag=None):
+    """Mann-Kendall with the Hamed & Rao (1998) variance correction for serial
+    correlation: Var(S) is inflated by n/n*, built from every lag whose
+    autocorrelation of the ranks of the Sen-detrended series is significant.
+    `max_lag` limits the lags considered (Hamed and Rao suggest 3 for short
+    series); None uses every lag, as pymannkendall does by default.
+    Matches pymannkendall.hamed_rao_modification_test (tests/test_v3.py)."""
+    from scipy.stats import norm, rankdata
+    y = np.asarray(y, float)
+    n = len(y)
+    d, _ = _sen_detrend(y)
+    last = n - 1 if max_lag is None else min(max_lag, n - 1)
+    r = _acf(rankdata(d), last)
+    bound = norm.ppf(1 - alpha / 2) / np.sqrt(n)
+    sni = sum((n - k) * (n - k - 1) * (n - k - 2) * r[k] for k in range(1, last + 1) if abs(r[k]) > bound)
+    ratio = 1 + 2 / (n * (n - 1) * (n - 2)) * sni
+    return _z_p(_mk_s(y), _mk_var(y) * ratio)
+
+
+def mann_kendall_tfpw(y):
+    """Trend-free pre-whitening (Yue et al. 2002): remove the Sen trend, take out
+    the lag-1 autocorrelation, add the trend back, then run the ordinary test."""
+    y = np.asarray(y, float)
+    n = len(y)
+    d, slope = _sen_detrend(y)
+    r1 = _acf(d, 1)[1]
+    w = d[1:] - r1 * d[:-1]
+    w = w + np.arange(1, n) * slope
+    return _z_p(_mk_s(w), _mk_var(w))
+
+
+def mann_kendall_prewhitened(y):
+    """Plain pre-whitening (von Storch 1995) on the raw series. Known to strip
+    part of a genuine trend along with the autocorrelation, so it is
+    conservative; reported for completeness, not as the headline adjustment."""
+    y = np.asarray(y, float)
+    r1 = _acf(y, 1)[1]
+    w = y[1:] - r1 * y[:-1]
+    return _z_p(_mk_s(w), _mk_var(w))
+
+
+def lag1_autocorrelation_detrended(y):
+    d, _ = _sen_detrend(np.asarray(y, float))
+    return float(_acf(d, 1)[1])
+
+
+def trend_summary(g):
+    """One row per specification: 1995-99 vs 2022-26 change, Sen's slope, and
+    the trend test with and without corrections for serial correlation in
+    the yearly Moran's I series (adjacent years are not independent)."""
+    out = []
+    for spec, s in g.groupby("spec"):
+        s = s.sort_values("year")
+        y = s["I"].to_numpy(float)
+        z, p = mann_kendall(y)
+        _, p_hr = mann_kendall_hamed_rao(y)
+        _, p_tf = mann_kendall_tfpw(y)
+        _, p_pw = mann_kendall_prewhitened(y)
+        out.append({"spec": spec, "I_1995_99": s[s.year <= 1999]["I"].mean(),
+                    "I_2022_26": s[s.year >= 2022]["I"].mean(),
+                    "change": s[s.year >= 2022]["I"].mean() - s[s.year <= 1999]["I"].mean(),
+                    "sen_slope_per_decade": sen_slope(s["year"].to_numpy(), y) * 10,
+                    "mann_kendall_z": z, "mann_kendall_p": p,
+                    "lag1_acf_detrended": lag1_autocorrelation_detrended(y),
+                    "mk_hamed_rao_p": p_hr, "mk_tfpw_p": p_tf, "mk_prewhitened_p": p_pw})
+    return pd.DataFrame(out)
 
 
 def sen_slope(x, y):
@@ -144,21 +242,15 @@ def main():
         for name, W in weights_grid(coords).items():
             rows.append({"year": y, "spec": name, "I": morans_I(x, W), "n_towns": len(towns)})
     rows += balanced_panel_rows(fits, weights)
-    g = pd.DataFrame(rows)
-    summ = []
-    for spec, s in g.groupby("spec"):
-        s = s.sort_values("year")
-        z, p = mann_kendall(s["I"].to_numpy())
-        summ.append({"spec": spec, "I_1995_99": s[s.year <= 1999]["I"].mean(),
-                     "I_2022_26": s[s.year >= 2022]["I"].mean(),
-                     "change": s[s.year >= 2022]["I"].mean() - s[s.year <= 1999]["I"].mean(),
-                     "sen_slope_per_decade": sen_slope(s["year"].to_numpy(), s["I"].to_numpy()) * 10,
-                     "mann_kendall_z": z, "mann_kendall_p": p})
-    summ = pd.DataFrame(summ)
+    # Summarise the values exactly as written to robust_moran_specs.csv (4 dp), so
+    # `--summary-only` and trend_sensitivity.py, which read that file, agree to the digit.
+    g = pd.DataFrame(rows).round(4)
+    summ = trend_summary(g)
     g.round(4).to_csv(os.path.join(ANALYTICS_DIR, "robust_moran_specs.csv"), index=False)
     summ.round(4).to_csv(os.path.join(ANALYTICS_DIR, "robust_moran_summary.csv"), index=False)
     log(f"spec grid: {len(summ)} specs; rising in {(summ['change'] > 0).sum()}, "
-        f"MK p<0.05 & rising in {((summ['mann_kendall_p'] < 0.05) & (summ['mann_kendall_z'] > 0)).sum()}")
+        f"MK p<0.05 & rising in {((summ['mann_kendall_p'] < 0.05) & (summ['mann_kendall_z'] > 0)).sum()}, "
+        f"after Hamed-Rao in {((summ['mk_hamed_rao_p'] < 0.05) & (summ['change'] > 0)).sum()}")
 
     # ---------------- 2. block level ----------------------------------------
     c = pd.read_csv(COORDS)
@@ -256,5 +348,17 @@ def main():
     log("done")
 
 
+def summary_only():
+    """Recompute robust_moran_summary.csv from robust_moran_specs.csv without
+    re-fitting anything (the yearly Moran's I values are unchanged)."""
+    g = pd.read_csv(os.path.join(ANALYTICS_DIR, "robust_moran_specs.csv"))
+    summ = trend_summary(g)
+    summ.round(4).to_csv(os.path.join(ANALYTICS_DIR, "robust_moran_summary.csv"), index=False)
+    return summ
+
+
 if __name__ == "__main__":
+    if "--summary-only" in sys.argv:
+        print(summary_only().round(4).to_string())
+        sys.exit(0)
     main()

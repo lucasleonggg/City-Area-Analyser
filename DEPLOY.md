@@ -58,7 +58,7 @@ GitHub's 100MB hard limit and nothing needs it at runtime.
 5. **Click every page.** Overview, the eight numbered modules, Model
    Validation, Research & Data and the three Supporting pages. All fourteen were verified to render
    (headless Streamlit AppTest + browser screenshots) from a checkout without
-   the gitignored 132 MB CSV. Maps use `px.scatter_map`, so `plotly>=5.24`
+   the gitignored ~120 MB CSV. Maps use `px.scatter_map`, so `plotly>=5.24`
    is required; `scatter_mapbox` no longer exists in plotly 7.
 
 6. **Put the URL in the submission form and on the video end card.**

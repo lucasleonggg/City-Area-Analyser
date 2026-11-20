@@ -6,7 +6,7 @@
 The manifest is what lets someone else confirm they are running the
 pipeline on exactly the inputs that produced the published results.
 `--skip-missing` tolerates files that are intentionally not committed (the
-132 MB cleaned transaction file) while still failing on any CHANGED file.
+~120 MB cleaned transaction file) while still failing on any CHANGED file.
 """
 
 import argparse
@@ -19,7 +19,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 MANIFEST = os.path.join(ROOT, "raw_data", "MANIFEST.csv")
 
 SOURCES = {
-    "hdb-1990-1999.csv": "Data.gov.sg, HDB Resale Flat Prices (collection 189); filenames do not match contents, see README",
+    "hdb-1990-1999.csv": "Data.gov.sg, HDB Resale Flat Prices (collection 189); files renamed to the period they contain, see README",
     "hdb-2000-2012.csv": "Data.gov.sg, HDB Resale Flat Prices",
     "hdb-2012-2014.csv": "Data.gov.sg, HDB Resale Flat Prices",
     "hdb-2015-2016.csv": "Data.gov.sg, HDB Resale Flat Prices",
@@ -43,7 +43,7 @@ SOURCES = {
     "bto-supply-pipeline.csv": "v1 BTO launch list; provenance unverified, not used by any v3 analysis",
 }
 DERIVED = {
-    "processed_data/hdb-all-cleaned.csv": "pipeline/merge.py + clean.py from raw_data/hdb-*.csv (not committed: 132 MB)",
+    "processed_data/hdb-all-cleaned.csv": "pipeline/merge.py + clean.py from raw_data/hdb-*.csv (not committed: ~120 MB)",
 }
 
 

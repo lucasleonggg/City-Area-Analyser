@@ -18,14 +18,16 @@ def _recent():
 
 def _inputs():
     st.subheader("Household")
+    st.caption("Starts with an illustrative first-timer couple: $7,500 a month, $40k cash, $60k CPF, and the "
+               "$80k CPF Housing Grant for a 2- to 4-room resale flat. Change any figure.")
     c1, c2, c3 = st.columns(3)
-    income = c1.number_input("Gross monthly household income ($)", 0, 50_000, 6_000, 250)
+    income = c1.number_input("Gross monthly household income ($)", 0, 50_000, 7_500, 250)
     debt = c2.number_input("Other monthly loan repayments ($)", 0, 20_000, 0, 50,
                            help="Car loan, personal loans, credit-card minimums. Counted under TDSR for bank loans.")
-    cash = c3.number_input("Cash savings available ($)", 0, 2_000_000, 50_000, 5_000)
+    cash = c3.number_input("Cash savings available ($)", 0, 2_000_000, 40_000, 5_000)
     c1, c2, c3 = st.columns(3)
-    cpf = c1.number_input("CPF Ordinary Account available ($)", 0, 2_000_000, 40_000, 5_000)
-    grants = c2.number_input("CPF housing grants assumed ($)", 0, 230_000, 0, 5_000,
+    cpf = c1.number_input("CPF Ordinary Account available ($)", 0, 2_000_000, 60_000, 5_000)
+    grants = c2.number_input("CPF housing grants assumed ($)", 0, 230_000, 80_000, 5_000,
                              help="Enter what you expect to qualify for. Indicatively, first-timer families buying "
                                   "resale can stack a CPF Housing Grant (up to $80k for 2-4 room, $50k for 5-room+), "
                                   "an income-tiered Enhanced CPF Housing Grant (up to $120k) and a Proximity Housing "
@@ -75,7 +77,7 @@ def show():
     st.caption(f"What stops a higher price: {best['binding']}.")
 
     st.subheader("Check a specific price")
-    price = st.number_input("Flat price ($)", 50_000, 3_000_000, int(round(max(best["price"], 300_000), -4)), 10_000)
+    price = st.number_input("Flat price ($)", 50_000, 3_000_000, int(max(best["price"], 60_000) // 10_000 * 10_000), 10_000)
     e = SC.evaluate(price, h, loan)
     rows = [("Price", e["price"]), ("less grants applied", -e["grants_used"]), ("less loan", -e["loan"]),
             ("Downpayment", e["downpayment"]), ("plus buyer's stamp duty", e["stamp_duty"]),
@@ -101,6 +103,16 @@ def show():
     t["share_of_sales_affordable_pct"] = t["town"].map(share)
     t["within_reach"] = t["price"] <= best["price"]
     t = t.merge(town_coords_df(), on="town")
+    n_reach = int(t["within_reach"].sum())
+    cheapest = t.sort_values("price").iloc[0]
+    if (t["share_of_sales_affordable_pct"].fillna(0) < 1).all():
+        st.error(f"Almost none of this year's {ft} resale flats are within reach in any town. The cheapest "
+                 f"reference {ft} ({cheapest['town']}, {money(cheapest['price'])}) is "
+                 f"{money(cheapest['price'] - best['price'])} above this household's maximum. The limit is "
+                 f"{best['binding']}.")
+    else:
+        st.markdown(f"The reference {ft} is within reach in **{n_reach} of {len(t)} towns**; the map shows the "
+                    f"share of each town's actual {yr} {ft} sales at or below {money(round(best['price'], -3))}.")
     fig = px.scatter_map(t, lat="lat", lon="lng", color="share_of_sales_affordable_pct", size="price",
                          hover_name="town", range_color=(0, 100), color_continuous_scale="RdYlGn",
                          hover_data={"price": ":$,.0f", "share_of_sales_affordable_pct": ":.0f",

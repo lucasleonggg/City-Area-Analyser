@@ -133,17 +133,51 @@ def show():
         rs = store.table("robust_moran_summary.csv")
         n_up = int((rs["change"] > 0).sum())
         n_sig = int(((rs["mann_kendall_p"] < 0.05) & (rs["mann_kendall_z"] > 0)).sum())
+        has_hr = "mk_hamed_rao_p" in rs.columns
         a, b, c = st.columns(3)
-        a.metric("Spatial-weight specifications tested", len(rs))
+        a.metric("Specifications tested", len(rs),
+                 help="24 spatial-weight definitions plus a balanced panel of towns present in every year. "
+                      "They share the same transactions, so they are robustness checks, not independent replications.")
         b.metric("Show clustering rising 1995-99 → 2022-26", f"{n_up} of {len(rs)}")
-        c.metric("Rising trend significant (Mann-Kendall p<0.05)", f"{n_sig} of {len(rs)}")
+        if has_hr:
+            n_hr = int(((rs["mk_hamed_rao_p"] < 0.05) & (rs["change"] > 0)).sum())
+            c.metric("Rising trend significant, corrected for serial correlation", f"{n_hr} of {len(rs)}",
+                     help=f"Hamed-Rao corrected Mann-Kendall, p < 0.05. Adjacent years are correlated, so the "
+                          f"ordinary test (significant in {n_sig} of {len(rs)}) overstates confidence.")
+            bal = rs[rs["spec"].str.contains("balanced")]
+            msg = (f"The exception is the balanced panel of towns present every year "
+                   f"(Hamed-Rao p = {bal['mk_hamed_rao_p'].iloc[0]:.3f}): on that smaller set the rise is suggestive, "
+                   f"not established. ") if len(bal) and bal["mk_hamed_rao_p"].iloc[0] >= 0.05 else ""
+            if store.exists("robust_trend_sensitivity.csv"):
+                ts = store.table("robust_trend_sensitivity.csv")
+                k = len(ts)
+                n_ = lambda c: int((ts[c] < 0.05).sum()) if c in ts.columns else None  # noqa: E731
+                msg += (f"With only 32 yearly values every trend test over-rejects when persistence is high, so "
+                        f"simulations ask directly how often persistence alone would produce a rise this consistent. "
+                        f"p < 0.05 in {n_('sim_p_fitted_phi')} of {k} specifications under the estimated AR(1)")
+                if "sim_p_ar2" in ts.columns:
+                    msg += (f", {n_('sim_p_ar2')} of {k} under an AR(2), {n_('sim_p_phi_uncertain')} of {k} with the "
+                            f"persistence estimate's own uncertainty included")
+                msg += f", and {n_('sim_p_phi_0_9')} of {k} even at a pessimistic 0.9."
+            if store.exists("robust_trend_breaks.csv"):
+                br = store.table("robust_trend_breaks.csv")
+                both = int(((br["sen_slope_per_decade_before"] > 0) & (br["sen_slope_per_decade_after"] > 0)).sum())
+                msg += (f" A steady rise rather than a one-off jump: a linear trend beats the best single level shift "
+                        f"in {int((br['preferred_by_bic'] == 'linear trend').sum())} of {len(br)} specifications, and "
+                        f"clustering rises on both sides of the break in {both} of {len(br)}. The specifications share "
+                        f"the same data, so these are robustness checks, not independent confirmations.")
+            st.caption(msg)
+        else:
+            c.metric("Rising trend significant (Mann-Kendall p<0.05)", f"{n_sig} of {len(rs)}")
         specs = store.table("robust_moran_specs.csv")
         fig = px.line(specs, x="year", y="I", color="spec", height=480,
                       labels={"I": "Moran's I of location premium", "year": "", "spec": "Weights"},
                       title="Moran's I under every specification (town level)")
         st.plotly_chart(fig, width="stretch")
         show = rs.sort_values("change").round(3)
-        show["mann_kendall_p"] = rs.loc[show.index, "mann_kendall_p"].map(lambda p: "<0.001" if p < 0.001 else f"{p:.3f}")
+        for col in ("mann_kendall_p", "mk_hamed_rao_p", "mk_tfpw_p", "mk_prewhitened_p"):
+            if col in rs.columns:
+                show[col] = rs.loc[show.index, col].map(lambda p: "<0.001" if p < 0.001 else f"{p:.3f}")
         st.dataframe(show, width="stretch", hide_index=True)
     if store.exists("robust_moran_ci.csv"):
         ci = store.table("robust_moran_ci.csv")

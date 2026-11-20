@@ -16,4 +16,4 @@ onnx>=1.15
 # this model. Wrong runtime for tree ensembles, not a bug.
 openvino>=2024.0
 
-pytest==9.1.1
+-r requirements-validation.txt

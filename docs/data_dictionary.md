@@ -54,7 +54,10 @@ verifies them.
 | `audit_legacy_split.csv` | `audit_price_model.py` | v1's train≤2018 test re-run |
 | `market_forecast_baselines.csv`, `market_forecast_errors.csv.gz` | `audit_price_model.py` | index forecast errors (%) by method and horizon |
 | `global_shapley.csv`, `shapley_sample.csv`, `pdp_*.csv`, `model_town_premium.csv` | `build_explanations.py` | model explanations |
-| `robust_moran_specs.csv`, `robust_moran_summary.csv` | `spatial_robustness.py` | Moran's I by year and weight specification; Sen slope, Mann-Kendall |
+| `robust_moran_specs.csv`, `robust_moran_summary.csv` | `spatial_robustness.py` | Moran's I by year and weight specification; Sen slope; Mann-Kendall z and p (original, assumes independent years); `lag1_acf_detrended` (lag-1 autocorrelation after removing the Sen trend); `mk_hamed_rao_p` (**primary**, corrected for serial correlation); `mk_tfpw_p`, `mk_prewhitened_p` (sensitivity only; over-reject or under-reject at n = 32) |
+| `robust_trend_sensitivity.csv` | `trend_sensitivity.py` | Per specification: fitted AR(1) persistence and its small-sample bias correction; AR(2) coefficients; Hamed–Rao p with all significant lags and with lags 1–3; simulated p-values = share of 4,000 trendless series whose Mann–Kendall S is at least the observed S (one-sided): `sim_p_fitted_phi` (AR(1) as estimated), `sim_p_phi_0_9` (AR(1), pessimistic 0.9), `sim_p_ar2` (AR(2) as estimated), `sim_p_phi_uncertain` (bias-corrected AR(1) drawn from its sampling distribution for every series) |
+| `robust_trend_breaks.csv` | `trend_sensitivity.py` | Per specification: best single mean-shift break (each side ≥ 6 years), BIC of the step model and of a linear trend, the model BIC prefers, and the Sen slope and Mann–Kendall p on each side of the break |
+| `robust_trend_test_size.csv` | `trend_sensitivity.py` | False-trend rate at 5% of each test on 1,000 trendless AR(1) series of length 32, by persistence (ideal 0.05) |
 | `robust_block_moran.csv` | `spatial_robustness.py` | block-level Moran's I by 3-year window and band |
 | `robust_moran_ci.csv`, `robust_premium_ci.csv` | `spatial_robustness.py` | bootstrap 95% intervals |
 | `robust_gi_stability.csv`, `robust_gi_by_k.csv` | `spatial_robustness.py` | share of bootstrap re-fits flagging each town; labels by k |
