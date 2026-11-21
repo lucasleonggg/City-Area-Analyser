@@ -1,11 +1,14 @@
 # The Evolution of Spatial Inequality and Housing Affordability in Singapore's HDB Resale Market, 1990–2026
 
-**Lucas Leong Ting Wai** · Working paper, version 3.2 (draft) · November 2026
+**Lucas Leong Ting Wai** · Working paper, version 3.2.1 (draft) · November 2026
 
 *Not peer reviewed. Comments on the methods are actively sought. All results
 reproduce from public data with `bash reproduce.sh` in the EquiCity
 repository; every number below is recomputed in
 `notebooks/reproduce_headline_findings.ipynb`.*
+
+*Code: <https://github.com/lucasleonggg/City-Area-Analyser> ·
+Interactive dashboard: <https://equicity-sg.streamlit.app>*
 
 ---
 
@@ -114,12 +117,26 @@ conditional permutation p-values and Benjamini–Hochberg correction; Theil T
 decomposed into between- and within-region parts; the coefficient of
 variation of constant-quality prices. Robustness: 25 specifications (24
 spatial-weight definitions plus a balanced panel); block-level Moran's I in 3-year windows
-at three distance bands; 100 bootstrap re-fits per year. Trends in the yearly
-Moran's I series are tested with Mann–Kendall; because adjacent years are
-correlated, the Hamed–Rao correction is the primary test, checked against
-simulations of how often persistence alone (AR(1), AR(2), and AR(1) with
-parameter uncertainty) produces a comparable rise, and against a
-single-break step model.
+at three distance bands; 100 bootstrap re-fits per year.
+
+**Trend tests.** Trends in the yearly Moran's I series are tested with
+Mann–Kendall. Because adjacent years are correlated, the primary test is the
+Hamed–Rao (1998) correction, which inflates the variance of the test
+statistic using the significant autocorrelations of the ranks of the
+Sen-detrended series. It is checked in three further ways. (i) Persistence-
+only simulations: for each specification, 4,000 trendless series are
+simulated from an AR(1) fitted to the detrended series; from an AR(2) fitted
+by Yule–Walker and constrained to be stationary (Brockwell & Davis, 1991);
+from an AR(1) whose coefficient is first corrected for its downward
+small-sample bias, φ + (1 + 3φ)/n (Kendall, 1954), then redrawn for every
+series from N(φ, (1 − φ²)/n) to carry its estimation uncertainty; and from a
+pessimistic AR(1) of 0.9. The one-sided Monte Carlo p-value is (k + 1)/4,001,
+where k is the number of simulated series whose Mann–Kendall S is at least
+the observed one (Davison & Hinkley, 1997), so the smallest attainable value
+is 0.00025. (ii) A structural-break check: the single mean shift that
+minimises the residual sum of squares, with at least six years on each side,
+is compared with a linear trend by BIC (Schwarz, 1978). (iii) The false-trend
+rate of each test is measured on 1,000 trendless AR(1) series of length 32.
 
 ## 4. Results
 
@@ -185,8 +202,9 @@ decades.
   support. I therefore ask directly how often persistence alone, with no
   trend, produces a rise as consistent as the observed one (4,000
   simulations per specification). With each specification's estimated AR(1)
-  persistence, p ≤ 0.0002 for 24 of 25; with an AR(2) instead, p ≤ 0.0002
-  for 24 of 25; with the AR(1) coefficient bias-corrected for the short
+  persistence, none of the 4,000 simulated series rose as consistently as
+  the observed one in 24 of 25 specifications (p = 0.00025, the smallest
+  value the simulation can give); the same holds with an AR(2); with the AR(1) coefficient bias-corrected for the short
   sample and drawn afresh for every simulation to carry its estimation
   uncertainty, p ≤ 0.001 for 24 of 25; and with a deliberately pessimistic
   persistence of 0.9, 23 of 25 stay below 0.05 (inverse-distance weights
@@ -326,11 +344,20 @@ Anselin, L. (1995). Local indicators of spatial association — LISA.
 Benjamini, Y., & Hochberg, Y. (1995). Controlling the false discovery rate.
 *Journal of the Royal Statistical Society B*, 57(1), 289–300.
 
+Brockwell, P. J., & Davis, R. A. (1991). *Time Series: Theory and Methods*
+(2nd ed.). Springer.
+
+Davison, A. C., & Hinkley, D. V. (1997). *Bootstrap Methods and Their
+Application*. Cambridge University Press.
+
 Getis, A., & Ord, J. K. (1992). The analysis of spatial association by use of
 distance statistics. *Geographical Analysis*, 24(3), 189–206.
 
 Hamed, K. H., & Rao, A. R. (1998). A modified Mann–Kendall trend test for
 autocorrelated data. *Journal of Hydrology*, 204(1–4), 182–196.
+
+Kendall, M. G. (1954). Note on bias in the estimation of autocorrelation.
+*Biometrika*, 41(3/4), 403–404.
 
 Mann, H. B. (1945). Nonparametric tests against trend. *Econometrica*, 13(3),
 245–259.
@@ -340,6 +367,9 @@ regression. *Advances in Neural Information Processing Systems* 32.
 
 Rosen, S. (1974). Hedonic prices and implicit markets. *Journal of Political
 Economy*, 82(1), 34–55.
+
+Schwarz, G. (1978). Estimating the dimension of a model. *Annals of
+Statistics*, 6(2), 461–464.
 
 Sen, P. K. (1968). Estimates of the regression coefficient based on Kendall's
 tau. *Journal of the American Statistical Association*, 63(324), 1379–1389.

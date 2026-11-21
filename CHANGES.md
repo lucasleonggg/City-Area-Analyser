@@ -1,3 +1,23 @@
+# EquiCity 3.2.1 — reporting corrections (21 Nov 2026)
+
+* **Monte Carlo p-values.** With 4,000 simulations the smallest attainable
+  p-value is 1/4,001 = 0.00025; the paper reported "p ≤ 0.0002", an artefact
+  of rounding to 4 dp. Now reported as p = 0.00025 (no simulated series rose
+  as consistently as the observed one), and `robust_trend_sensitivity.csv`
+  is written to 6 dp. No result changed.
+* **Method detail.** The paper's Methods section now describes the trend
+  checks in full (Hamed–Rao, AR(1)/AR(2) Yule–Walker fits, Kendall's
+  small-sample bias correction and redrawn coefficients, the (k + 1)/(n + 1)
+  Monte Carlo p-value, the BIC break test) with references (Brockwell &
+  Davis 1991; Davison & Hinkley 1997; Kendall 1954; Schwarz 1978).
+* **Links.** Repository and dashboard links in the paper header and the
+  policy brief.
+* **Policy brief.** States the serial-correlation qualification (24 of 25;
+  balanced panel recent and not established), and words the regional and
+  lease-discount implications as hypotheses the analysis does not test.
+
+---
+
 # EquiCity 3.2 — serial correlation in the clustering trend (20 Nov 2026)
 
 * **Problem.** The Mann–Kendall test on yearly Moran's I assumed the 32

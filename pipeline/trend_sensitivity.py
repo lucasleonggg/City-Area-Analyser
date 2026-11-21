@@ -155,7 +155,9 @@ def structural_break(years, y):
 
 
 def persistence_null_p(y, phi, rng):
-    """One-sided: share of trendless AR(1) series with S >= observed S."""
+    """One-sided Monte Carlo p-value, (k + 1) / (N_SIM + 1), where k is the number
+    of trendless AR(1) series with S >= observed S (Davison & Hinkley 1997).
+    Its smallest possible value is 1 / (N_SIM + 1) = 0.00025."""
     y = np.asarray(y, float)
     s_obs = mk_s_many(y[None, :])[0]
     sims = mk_s_many(ar1(N_SIM, len(y), phi, rng))
@@ -223,7 +225,9 @@ def main():
     sens = sensitivity(g, rng)
     brk = breaks(g)
     size = test_size(rng)
-    sens.round(4).to_csv(os.path.join(ANALYTICS_DIR, "robust_trend_sensitivity.csv"), index=False)
+    # 6 dp: the smallest simulated p-value is 1/(N_SIM+1) = 0.00025, which 4 dp
+    # would round to 0.0002, below what the simulation can resolve.
+    sens.round(6).to_csv(os.path.join(ANALYTICS_DIR, "robust_trend_sensitivity.csv"), index=False)
     brk.round(4).to_csv(os.path.join(ANALYTICS_DIR, "robust_trend_breaks.csv"), index=False)
     size.round(3).to_csv(os.path.join(ANALYTICS_DIR, "robust_trend_test_size.csv"), index=False)
     pd.set_option("display.width", 250)
