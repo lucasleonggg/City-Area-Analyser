@@ -7,8 +7,8 @@ reproduce from public data with `bash reproduce.sh` in the EquiCity
 repository; every number below is recomputed in
 `notebooks/reproduce_headline_findings.ipynb`.*
 
-*Code: <https://github.com/lucasleonggg/City-Area-Analyser> ·
-Interactive dashboard: <https://equicity-sg.streamlit.app>*
+*Code:* <https://github.com/lucasleonggg/City-Area-Analyser>\
+*Interactive dashboard:* <https://equicity-sg.streamlit.app>
 
 ---
 
